@@ -1,7 +1,7 @@
 local randyRanch = {
     bPlayedVoice = false
 }
-local function update(mainScene,topDrop,midDrop,bottomDrop)
+local function update(mainScene,topDrop,midDrop,bottomDrop,self)
     if( topDrop.x ) then
         local x,y = mainScene.city.displayGroup:localToContent( topDrop.x, topDrop.y )
         if( x <= mainScene.rightEdge - (math.random( 20 ) + 10) and not topDrop.bPlayedAnim ) then
@@ -129,7 +129,7 @@ function randyRanch:spawn(scene)
     mainScene.city.displayGroup:insert( bottomDrop )
    
 	bottomDrop.update = function()
-		update(mainScene,topDrop,midDrop,bottomDrop)
+		update(mainScene,topDrop,midDrop,bottomDrop, self)
 	end
     
     bottomDrop.onPlayerCollision = function()

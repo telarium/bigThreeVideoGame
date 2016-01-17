@@ -53,6 +53,9 @@ function mudSharks:spawn(scene)
 	mudShark:setSequence( "loop" )
 	
 	mudShark.bPerciseCollisionDetection = true
+    mudShark.xChoke = 0
+    mudShark.yChoke = 10
+   -- mudShark.collisionDistance = 45
     
 	mudShark:play()
 	
@@ -72,8 +75,8 @@ function mudSharks:spawn(scene)
 	mudShark.midPoint = {x=mudShark.x - ((mudShark.x - destx )/2),y=randomHeight}
 	
 	mudShark.health = 1
-    --mudShark.xChoke = 5
-    mudShark.yChoke = 10
+    
+    
     mudShark.name = "mudShark"
 	
 	mudShark.update = function()

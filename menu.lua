@@ -571,7 +571,7 @@ function scene:createScene( event )
     scene.selectText.alpha = 0
     
     
-    local fontSize = 7.5
+    local fontSize = 8.5
     if ( system.getInfo("platformName") == "Android" ) then
         fontSize = 8.5
     end

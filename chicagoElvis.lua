@@ -219,6 +219,7 @@ local function spawnAgents(mainScene, objects, spawnX, self)
     letterBase4.id = "base4"
     letterBase4.explosionScale = 2
     letterBase4.disableEnemyCollision = true
+    letterBase4.doObstacleCollisionCheck = true
     
     mainScene.city.displayGroup:insert( letterBase4 )
     table.insert( objects, letterBase4 )

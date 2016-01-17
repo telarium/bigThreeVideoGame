@@ -63,7 +63,8 @@ function blackHawks:spawn(scene)
 	mainScene.city.displayGroup:insert( blackHawk )
 	blackHawk:setSequence( "loop" )
 	blackHawk:play()
-    blackHawk.bPerciseCollisionDetection = true
+   --blackHawk.bPerciseCollisionDetection = true
+   blackHawk.collisionDistance = 50
 	
 	local speed = mainScene.city.curSpeed
 	if( speed < mainScene.city.defaultSpeed ) then

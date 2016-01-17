@@ -40,8 +40,8 @@ function toasters:spawn(scene)
     
     toaster.hat = hat
     
-    --toaster.collisionDistance = 30
-    toaster.bPerciseCollisionDetection = true
+    toaster.collisionDistance = 25
+    --toaster.bPerciseCollisionDetection = true
     
     display.setDefault( "magTextureFilter", "linear" )
     display.setDefault( "minTextureFilter", "linear" )
@@ -120,7 +120,7 @@ function toasters:spawn(scene)
 	
 	toaster.bGroundSpawn = true
 	toaster.health = 1
-    toaster.xChoke = -0
+    toaster.xChoke = -20
     toaster.yChoke = -50
     toaster.explosionScale = 1
 	

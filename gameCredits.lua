@@ -116,6 +116,25 @@ function scene:enterScene( event )
 	scene.curtain.x = display.contentCenterX
 	scene.curtain.y = display.contentCenterY
     displayGroup:insert( scene.curtain )
+    
+    local delay = function()
+    
+        scene.exitButton = display.newImage("images/creditsClose.png");
+        scene.exitButton.x = rightEdge - 15
+        scene.exitButton.y = topEdge + 15
+        scene.exitButton.blendMode = "add"
+        scene.exitButton.alpha = 0
+        transition.to( scene.exitButton, { time=2000, delay=0, alpha=0.275, transition=easing.outExpo} )
+        
+        local exit = function()
+            storyboard.gotoScene( "menu" )
+        end
+        
+        scene.exitButton:addEventListener( "touch", exit )
+        
+        displayGroup:insert( scene.exitButton )
+    end
+    local myTimer = timer.performWithDelay( 2000, delay )
 
 	scene.curtain:setSequence( "loop" )
 	
@@ -157,11 +176,15 @@ function scene:exitScene( event )
     myScene.height = nil
     myScene.perc = nil
     
+    audio.stop( scene.soundChannel )
     audio.dispose( scene.comedy )
     scene.comedy = nil
     
     scene.curtain:removeSelf()
     scene.curtain = nil
+    
+    scene.exitButton:removeSelf()
+    scene.exitButton = nil
     
     scene.bg:removeSelf()
     scene.bg = nil

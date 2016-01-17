@@ -57,7 +57,7 @@ function jerkoffHands:spawn(mainScene)
     self.activeHand.health = 2
     self.activeHand.explosionScale = 0.5
     self.activeHand.bDisableCollision = true
-    self.activeHand.xChoke = 40
+    self.activeHand.xChoke = 23
     self.activeHand.yChoke = 3
     
     self.activeHand.bPerciseCollisionDetection = true

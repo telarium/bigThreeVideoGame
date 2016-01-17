@@ -98,7 +98,7 @@ local function isCollidingWithObstacle(self, weapon)
     for i=1,table.getn( activeObstacles ) do
 		-- When counter is 1, only check i if it's an odd number. If counter is 2, check evens.
 		-- Trying to optimize all these checks if there are a lot of weapons flying around.
-		if( i <= 1 or (self.counter == 1 and math.mod(i, 2) ~= 0 ) or ( math.mod(i, 2) == 0 and self.counter == 2 ) ) then
+		--if( i <= 1 or (self.counter == 1 and math.mod(i, 2) ~= 0 ) or ( math.mod(i, 2) == 0 and self.counter == 2 ) ) then
         if( not mainScene.specialPowers.bPowerActive and activeObstacles[i].doObstacleCollisionCheck and not weapon.bDisarmed and mainScene:checkCollision(weapon, activeObstacles[i] ) ) then
             bHit = true
             
@@ -147,7 +147,7 @@ local function isCollidingWithObstacle(self, weapon)
 			end
             return
 
-       end
+      -- end
         end
     end
     if( bHit ) then

@@ -93,7 +93,7 @@ local function addGamepadButtonSprites(button, self)
      
      mainScene.ui.uiGroup:insert( button.innerRing )
      
-     button.innerCircle = display.newImageRect( "images/ui_gamepad_innerCircle.png", 90, 90 )
+     button.innerCircle = display.newImageRect( "images/ui_gamepad_innerCircle.png", 100, 100 )
      button.innerCircle.x = button.icon.x
      button.innerCircle.y = button.icon.y
      button.innerCircle.alpha = 0.15

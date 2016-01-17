@@ -68,9 +68,9 @@ function portaPotties:doHorizontalStack(mainScene)
 		end
 		prevObject = body
 		
-		if( num <= 3 ) then
+		--if( num <= 3 ) then
 		  body.doObstacleCollisionCheck = true
-		end
+		--end
 
 		table.insert( potties, body )
     end

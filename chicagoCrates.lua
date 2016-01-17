@@ -61,9 +61,9 @@ function crates:doHorizontalStack(mainScene)
         num = num - 1
         local myImage = self.image .. tostring( getCrateNum() ) .. ".gif"
         local body = display.newImageRect( myImage, self.imageHeight, self.imageWidth )	
-        if( num <=2 ) then
+        --if( num <=2 ) then
             body.doObstacleCollisionCheck = true
-        end	               
+        --end	               
         body.anchorX=0.5;body.anchorY=0.5
 		body.y = mainScene.groundY - body.height/2 + 3	
 		if( not prevObject ) then

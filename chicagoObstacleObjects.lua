@@ -232,6 +232,13 @@ function obstacleObjects:doCollision(group)
                 obj:applyAngularImpulse( angle )
             end
             
+            if( obj.xChoke and obj.yChoke ) then
+                obj.xChoke = -10
+                obj.yChoke = -10
+            end
+            if( obj.collisionDistance ) then
+                obj.collisionDistance = obj.collisionDistance * 1.5
+            end
             
             if( obj.onGroundImpact ) then
                 obj:addEventListener( "postCollision", obj.onGroundImpact )
@@ -266,7 +273,10 @@ local function collisionCheck(event)
         for i=1,table.getn( aliveObjects ) do
             if( aliveObjects[i].doObstacleCollisionCheck and  mainScene:checkCollision(mainScene.player.avatar, aliveObjects[i] ) ) then
                 if( mainScene.player.bDashing or mainScene.player.bDashingResidual ) then
-                    self:doCollision(aliveObjects[i].group)
+                    local delayFunc = function()
+                        self:doCollision(aliveObjects[i].group)
+                    end
+                    local myTimer = timer.performWithDelay( 50, delayFunc )
                 elseif( not aliveObjects[i].group.bCollidedWithPlayer and not aliveObjects[i].bCollidedWithPlayer  ) then
                     aliveObjects[i].group.bCollidedWithPlayer = true
                     mainScene.player:doObstacleCollision( aliveObjects[i].group )
@@ -362,7 +372,7 @@ function obstacleObjects:init(scene)
     mainScene.obstacles.cutlass = require( "chicagoCutlass" )
     mainScene.obstacles.bDisableSpawn = true
     
-    self.updateTimer = timer.performWithDelay( 35, collisionCheck, -1 )
+    self.updateTimer = timer.performWithDelay( 45, collisionCheck, -1 )
     self.updateTimer.params = { myself = self }
     self.discardTimer = timer.performWithDelay( 1000, discardedUpdate, -1 )
     self.discardTimer.params = { myself = self }

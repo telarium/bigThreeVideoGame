@@ -91,7 +91,7 @@ function redBats:spawn(scene)
         redbat.x = batObject.x
         redbat.y = batObject.y
         redbat.randomXSpeed = math.random( 30 ) * 0.01
-        redbat.collisionDistance = 38
+        redbat.collisionDistance = 40
       	return redbat
     end
     
@@ -112,7 +112,7 @@ function redBats:spawn(scene)
       i = 3
      end
      
-    if( table.getn( mainScene.enemies.activeEnemies ) >= 8 ) then
+    if( table.getn( mainScene.enemies.activeEnemies ) >= 8 or mainScene.bSmoggy ) then
         i = 2
     end
     

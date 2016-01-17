@@ -74,6 +74,7 @@ function trophy:setup(mainScene)
     bottomLeft.linearX = linearX
     bottomLeft.angle = angle
     bottomLeft.doObstacleCollisionCheck = true
+    bottomLeft.bPerciseCollisionDetection = true
     mainScene.city.displayGroup:insert( bottomLeft )
     addGroundImpact( bottomLeft, mainScene, self )
     table.insert( objects, bottomLeft )
@@ -164,6 +165,7 @@ function trophy:setup(mainScene)
     topLeft.y = bottomBase.y - 133
     topLeft.isAwake = true
     topLeft.bTestForCollision = true
+    topLeft.bPerciseCollisionDetection = true
     topLeft.linearX = linearX
     topLeft.angle = angle
     topLeft.doObstacleCollisionCheck = true
@@ -191,6 +193,7 @@ function trophy:setup(mainScene)
     topCenter.y = bottomBase.y - 146
     topCenter.isAwake = true
     topCenter.bTestForCollision = true
+    topCenter.bPerciseCollisionDetection = true
     topCenter.linearX = linearX
     topCenter.angle = angle
     topCenter.doObstacleCollisionCheck = true

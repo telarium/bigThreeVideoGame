@@ -1,7 +1,7 @@
 local cutlass = {
     putterSound = nil
 }
-local function update(mainScene, car, frontTire, frontHubcap, rearTire, rearHubcap, tailpipe, smog)
+local function update(mainScene, car, frontTire, frontHubcap, rearTire, rearHubcap, tailpipe, smog, mask)
     local x,y = mainScene.city.displayGroup:contentToLocal( mainScene.rightEdge, mainScene.foldY )
     local x2,y2 = mainScene.city.displayGroup:contentToLocal( mainScene.leftEdge, mainScene.foldY )
     
@@ -24,6 +24,7 @@ local function update(mainScene, car, frontTire, frontHubcap, rearTire, rearHubc
            timer.performWithDelay( 4000, dispose )
 	   
 	       car.bInitialized = true
+           smog.isVisible = true
 	   end
 	   return
 	end
@@ -70,6 +71,8 @@ local function update(mainScene, car, frontTire, frontHubcap, rearTire, rearHubc
         smog.maskX = smog.maskX + speed
         if( smog.maskX > 100 ) then
           smog:setMask( nil )
+          --mask:removeSelf()
+          mask = nil
         end
     end
     
@@ -105,7 +108,7 @@ local function update(mainScene, car, frontTire, frontHubcap, rearTire, rearHubc
             end
             if( smog.alpha <= 0 ) then
                smog:removeSelf()
-               
+               smog = nil
             end
         end
 
@@ -197,6 +200,7 @@ function cutlass:spawn(scene)
 	smog.height = smog.height + 8
 	smog.alpha = 1
 	smog:play()
+    smog.isVisible = false
 	mainScene.effectsGroup:insert( smog )
 
     local mask = graphics.newMask( "images/smogMask.png" )
@@ -213,7 +217,7 @@ function cutlass:spawn(scene)
             Runtime:removeEventListener( "enterFrame", loop )
             return
         end
-		update(mainScene, car, frontTire, frontHubcap, rearTire, rearHubcap, tailpipe, smog)
+		update(mainScene, car, frontTire, frontHubcap, rearTire, rearHubcap, tailpipe, smog, mask)
 	end
     Runtime:addEventListener( "enterFrame", loop )
     
@@ -250,11 +254,17 @@ function cutlass:spawn(scene)
         local b = 0.2
         car.bCollided = true
         
+        frontHubcap:removeSelf()
+        rearHubcap:removeSelf()
+        
+        frontHubcap = nil
+        rearHubcap = nil
+        
         mainScene.obstacles:addMisc( car )
         mainScene.obstacles:addMisc( frontTire )
         mainScene.obstacles:addMisc( rearTire )
-        mainScene.obstacles:addMisc( frontHubcap )
-        mainScene.obstacles:addMisc( rearHubcap )
+        --mainScene.obstacles:addMisc( frontHubcap )
+        --mainScene.obstacles:addMisc( rearHubcap )
 
         physics.addBody( car, "dynamic",
                   { density=d, friction=f, bounce=b, shape = {   -105.5, -3.5  ,  -71.5, 8.5  ,  -85.5, 20.5  ,  -104.5, 21.5  } },

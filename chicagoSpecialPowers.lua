@@ -163,8 +163,10 @@ end
 
 
 local function doDonDamage(y, obj)
+    local x = 0
+    x,y = mainScene.city.displayGroup:localToContent( x,y )
     if( obj.contentBounds.yMax <= y + 100 and obj.contentBounds.yMin >= y - 100 ) then
-        if( obj.contentBounds.xMax <= mainScene.rightEdge - 30 ) then
+        if( obj.contentBounds.xMin <= mainScene.rightEdge - 30 ) then
             return true
         end
     else

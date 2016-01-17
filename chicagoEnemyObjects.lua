@@ -114,7 +114,7 @@ function enemyObjects:spawn( enemy, randomDelay, minDelay )
     if( mainScene.specialPowers:checkSpawn() ) then
         return
     end
-    
+
     if( self.bDisable and not enemy ) then
         return
     end
@@ -151,6 +151,9 @@ function enemyObjects:spawn( enemy, randomDelay, minDelay )
 		
 		if( obj ) then
             obj.isVisible = true
+            if( not obj.health ) then
+                obj.health = 1
+            end
             if( table.getn( obj ) > 1 ) then
                 for i, item in ipairs( obj ) do
                 	if( item.x ) then
@@ -294,12 +297,12 @@ function enemyObjects:init(scene)
 	table.insert( self.allEnemies, mainScene.enemies.toaster )
     mainScene.enemies.basketball = require( "chicagoBasketballs" )
 	table.insert( self.allEnemies, mainScene.enemies.basketball )
-    --mainScene.enemies.randyRanch = require( "chicagoRandyRanch" )
-	--table.insert( self.allEnemies, mainScene.enemies.randyRanch )
+    mainScene.enemies.randyRanch = require( "chicagoRandyRanch" )
+	table.insert( self.allEnemies, mainScene.enemies.randyRanch )
     mainScene.enemies.vince = require( "chicagoVince" )
 	table.insert( self.allEnemies, mainScene.enemies.vince )
 	
-	self.updateTimer = timer.performWithDelay( 21, collisionCheck, -1 )
+	self.updateTimer = timer.performWithDelay( 33, collisionCheck, -1 )
     self.updateTimer.params = { myself = self }
 end
 

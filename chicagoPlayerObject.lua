@@ -1,5 +1,6 @@
 local mainScene = nil
 local invisbilityTime = 1500
+local kCollisionDistance = 60
 local GA = require ( "GameAnalytics" )
 
 local playerObject = {
@@ -299,8 +300,7 @@ function playerObject:init(scene)
 		self.avatar = display.newSprite( avatarSheet, {{ name = "idle", start=7, count=16, time=1600, loopCount=0 }, { name = "run", start=1, count=4, time=400, loopCount=0 },{ name = "dash", start=5, count=2, time=300, loopCount=0 },{ name = "jump", start=23, count=2, time=100, loopCount=0 },{ name = "death", start=25, count=1, time=300, loopCount=1 }} )
 		self.avatar:setSequence( "idle" )
 		self.avatar:play()
-		self.avatar.xChoke = 20
-		self.avatar.yChoke = 20
+        self.avatar.normalChoke = 20
         self.avatar.yOffset = 0
 		elseif( mainScene:getSelectedCharacter() == "mole" ) then
 		avatarSheet = graphics.newImageSheet( "images/moleAnim.png", { width=64, height=64, numFrames=36 } )
@@ -308,10 +308,10 @@ function playerObject:init(scene)
 		self.avatar.xScale = 1.15
 		self.avatar.yScale = 1.15
         self.avatar.yOffset = 0
+        self.avatar.normalChoke = 20
 		self.avatar:setSequence( "idle" )
 	self.avatar:play()
-	   self.avatar.xChoke = 10
-	self.avatar.yChoke = 10
+	   self.avatar.normalChoke = 10
 	elseif( mainScene:getSelectedCharacter() == "don" ) then
         avatarSheet = graphics.newImageSheet( "images/donAnim.png", { width=64, height=64, numFrames=53 } )
 		self.avatar = display.newSprite( avatarSheet, {{ name = "idle", start=1, count=29, time=character2, loopCount=1 }, { name = "run", start=30, count=9, time=700, loopCount=0},{ name = "dash", start=40, count=4, time=320, loopCount=0 },{ name = "jump", start=44, count=4, time=100, loopCount=0 },{ name = "death", start=48, count=6, time=300, loopCount=0 }} )
@@ -319,12 +319,11 @@ function playerObject:init(scene)
 		--self.avatar.yScale = 1.15
         self.avatar:setSequence( "idle" )
 		self.avatar:pause()
-		self.avatar.xChoke = 20
-		self.avatar.yChoke = 20
+		self.avatar.normalChoke = 20
         self.avatar.yOffset = 0
 	end
 		
-    self.avatar.collisionDistance = 50
+    
 	--self.avatar = display.newImageRect( "images/perrytest2x.png", 64, 64 )
 	self.avatar.anchorX = 0.5
 	self.avatar.anchorY = 1
@@ -406,12 +405,18 @@ function playerObject:update()
     evalDamage( self )
     
     if( self.bDashing ) then
+        self.avatar.xChoke = self.avatar.normalChoke * -1.5
+        self.avatar.collisionDistance = kCollisionDistance * 1.5
+        self.avatar.collisionDistance = kCollisionDistance * 1.5
     	self.dashMeter = self.dashMeter - ( self.dashDecreaseAmt * ( 60 / display.fps ) )
     	if ( self.dashMeter <= 0 ) then
     		self.dashMeter = 0
     		stopDash()
     	end
     else
+        self.avatar.xChoke = self.avatar.normalChoke
+        self.avatar.yChoke = self.avatar.normalChoke
+        self.avatar.collisionDistance = kCollisionDistance
     	if( self.dashMeter < 1 ) then
     		if( system.getTimer() - self.dashTime < 1000 ) then
     			self.dashMeter = 0

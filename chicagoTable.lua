@@ -88,6 +88,8 @@ function tableObject:setup(mainScene)
             mybox.rotation = math.random(20)
             mybox.doObstacleCollisionCheck = true
             physics.addBody( mybox, { density = 0.5, friction = 0.2, bounce = 0.1 } )
+           -- mybox.collisionDistance = 30
+            mybox.bPerciseCollisionDetection = true
         end
         
         boxes = nil
@@ -171,7 +173,7 @@ function tableObject:setup(mainScene)
         	box.anchorY = 0.5
             box.x = tableSprite.x - 35
             box.y = y - 15
-            box.collisionDistance = 35
+            box.collisionDistance = 45
             
             y = box.y
         

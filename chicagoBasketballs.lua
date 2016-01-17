@@ -22,7 +22,7 @@ function basketballs:spawn(scene)
     local collisionIndex = 0
     local i =math.random(2)+3
     
-    if( table.getn( mainScene.enemies.activeEnemies ) > 8 ) then
+    if( table.getn( mainScene.enemies.activeEnemies ) > 8 or mainScene.bSmoggy ) then
         i = math.random(2)
     end 
     
@@ -31,7 +31,7 @@ function basketballs:spawn(scene)
 
         basketball = display.newImageRect( "images/basketball.png", 28, 28 )
         
-        basketball.collisionDistance = 20
+        basketball.collisionDistance = 25
         
         if( collisionIndex == 0 ) then
     	   basketball.collisionIndex = 1

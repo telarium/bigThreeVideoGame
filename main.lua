@@ -202,8 +202,8 @@ end
 if( bPlayIntro ) then
     storyboard.gotoScene( "splashScreen" )
 else
-    --storyboard.gotoScene( "jokeyTime" )
-    storyboard.gotoScene( "menu" )
+    storyboard.gotoScene( "gameCredits" )
+    --storyboard.gotoScene( "menu" )
 end
 
 GA.isDebug                  = false

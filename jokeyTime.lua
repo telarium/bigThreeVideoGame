@@ -5,6 +5,7 @@ local GA = require ( "GameAnalytics" )
 require "uiEndScreen"
 
 local jokes = {}
+
 table.insert( jokes, { "Who granted the fish's wish?", "His fairy codmother", "The ducktor", "Fish and ships", "John" } )
 table.insert( jokes, { "John's father had three sons: Snack, Crackle, and...?", "John", "Pop", "Demetri Moreland", "Thumper" } )
 table.insert( jokes, { "What makes the hairdos of bumblebees so sticky?", "Honey combs", "Moostard", "Boobees", "Dude juice" } )
@@ -135,6 +136,7 @@ local function makeText( textString, fontSize, myX, myY, bLeft, bYellow )
 end
 
 function TimeOut()
+    scene.bGameOver = true
     scene.jokeyTimePoints = 0
     UIEndScreen_Show(scene, "jokeyTime" )
 end
@@ -196,7 +198,9 @@ function scene:enterScene( event )
     local correct = joke[1]
 
     local answers = {}
-    if( joke[2] == "7722" ) then
+
+    if( joke[2] == "Reseda Blvd" ) then
+
         local achievement = "CgkIhf7UyIMOEAIQCQ"
         if ( system.getInfo("platformName") == "iPhone OS" ) then 
             achievement = "resedaBlvd"
@@ -217,12 +221,12 @@ function scene:enterScene( event )
             end
         end
     end
- 
-    scene.answer1, scene.answer1Shadow = makeText( "  " .. answers[1], 11, display.contentCenterX, scene.title.y )
-    scene.answer2, scene.answer2Shadow = makeText( "  " .. answers[2], 11, display.contentCenterX, scene.title.y )
-    scene.answer3, scene.answer3Shadow = makeText( "  " .. answers[3], 11, display.contentCenterX, scene.setup.y )
-    scene.answer4, scene.answer4Shadow = makeText( "  " .. answers[4], 11, display.contentCenterX, scene.setup.y )
-    
+
+    scene.answer1, scene.answer1Shadow = makeText( "  " .. tostring(answers[1]), 11, display.contentCenterX, scene.title.y )
+    scene.answer2, scene.answer2Shadow = makeText( "  " .. tostring( answers[2]), 11, display.contentCenterX, scene.title.y )
+    scene.answer3, scene.answer3Shadow = makeText( "  " .. tostring(answers[3]), 11, display.contentCenterX, scene.setup.y )
+    scene.answer4, scene.answer4Shadow = makeText( "  " .. tostring(answers[4]), 11, display.contentCenterX, scene.setup.y )
+
     scene.answer1.index = 1
     scene.answer2.index = 2
     scene.answer3.index = 3

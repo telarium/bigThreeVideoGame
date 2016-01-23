@@ -1,3 +1,11 @@
+----------------------------------
+--    THE BIG 3 VIDEO GAME     ---
+-- andrew@langleycreations.com ---
+----------------------------------
+
+-- Script controls the toaster behaviors and properties
+-- for the Chicago endless runner level
+
 local toasters = {
 
 }
@@ -105,17 +113,7 @@ function toasters:spawn(scene)
 	   end
 	end
 	hat.timer = timer.performWithDelay( 20, hatUpdate, 0 )
-	
-	--toaster.t = 0
-	--toaster.origin = {x=toaster.x,y=toaster.y}
-	--toaster.destination = {x=destx,y=toaster.y}
-	--toaster.midPoint = {x=toaster.x - ((toaster.x - destx )/2),y=50}
-	
-		
 	toaster.update = function()
-	
-	
-		--update(toaster, mainScene)
 	end
 	
 	toaster.bGroundSpawn = true

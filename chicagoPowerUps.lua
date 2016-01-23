@@ -1,3 +1,11 @@
+----------------------------------
+--    THE BIG 3 VIDEO GAME     ---
+-- andrew@langleycreations.com ---
+----------------------------------
+
+-- Script controls the properties of various powerups
+-- for the Chicago endless runner level
+
 local mainScene = nil
 local prevTime = system.getTimer()
 

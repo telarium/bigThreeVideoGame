@@ -1,3 +1,13 @@
+----------------------------------
+--    THE BIG 3 VIDEO GAME     ---
+-- andrew@langleycreations.com ---
+----------------------------------
+
+-- Script controls the properties and behaviors for player weapon objects
+-- for the Chicago endless runner level.
+-- Cookies, red/blue bats, and microphones.
+
+
 local mainScene = nil
 local prevTime = system.getTimer()
 local throttleTime = 135
@@ -191,7 +201,6 @@ function weaponObjects:discard(weapon)
 	else
         
         weapon.bForceDiscard = true
-		--doBatExplosion( weapon )
 	end
      -- Don't penalize the player for firing and hitting an obstacle.
     mainScene.weapons.totalFired = mainScene.weapons.totalFired-1
@@ -270,6 +279,7 @@ function weaponObjects:fire()
 	end
 end
 
+-- For debug purposes
 function GetWeapons()
     return table.getn( mainScene.weapons.active )
 end
@@ -300,7 +310,6 @@ local function updateObstacles(event)
 end
 
 function weaponObjects:update()
-    --local removalIndex = nil
     self.counter = self.counter + 1
     if ( self.counter > 3 ) then
        self.counter = 1

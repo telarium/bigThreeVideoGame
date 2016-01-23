@@ -1,3 +1,11 @@
+----------------------------------
+-- THE BIG 3 VIDEO GAME        ---
+-- andrew@langleycreations.com ---
+----------------------------------
+
+-- Script controls the behavior of the car (and resulting smog)
+-- for the Chicago endless runner level
+
 local cutlass = {
     putterSound = nil
 }
@@ -6,7 +14,7 @@ local function update(mainScene, car, frontTire, frontHubcap, rearTire, rearHubc
     local x2,y2 = mainScene.city.displayGroup:contentToLocal( mainScene.leftEdge, mainScene.foldY )
     
     if( not car.bInitialized ) then
-        local x,y = mainScene.city.displayGroup:contentToLocal( mainScene.rightEdge, mainScene.foldY )
+       local x,y = mainScene.city.displayGroup:contentToLocal( mainScene.rightEdge, mainScene.foldY )
 	   car.x = x + car.width
 	   frontTire.x = car.x - 69
 	   frontHubcap.x = frontTire.x
@@ -71,7 +79,6 @@ local function update(mainScene, car, frontTire, frontHubcap, rearTire, rearHubc
         smog.maskX = smog.maskX + speed
         if( smog.maskX > 100 ) then
           smog:setMask( nil )
-          --mask:removeSelf()
           mask = nil
         end
     end
@@ -79,26 +86,24 @@ local function update(mainScene, car, frontTire, frontHubcap, rearTire, rearHubc
     if ( tailpipe.x ) then
         mainScene.bSmoggy = true
         if( tailpipe.x <= x ) then
-           -- tailpipe:play()
         elseif( tailpipe.x < x2 ) then
             tailpipe:removeSelf()
             tailpipe = nil
         end
     end
 
-
-        if( not smog.fadeTime ) then
-            smog.fadeTime = system.getTimer() + 7000
-            smog.counter = 0
-        end
-        if( mainScene.bRemoveSmog ) then -- If Mole is blowing the smog away
-            smog.alpha = smog.alpha - ( 0.0125 * ( 60 / display.fps ) )
+    if( not smog.fadeTime ) then
+        smog.fadeTime = system.getTimer() + 7000
+        smog.counter = 0
+    end
+    if( mainScene.bRemoveSmog ) then -- If Mole is blowing the smog away
+        smog.alpha = smog.alpha - ( 0.0125 * ( 60 / display.fps ) )
             if( tailpipe.x ) then -- Force removal of tailpipe
                  tailpipe.x = -1000
             end
-        end
-        if( system.getTimer() >= smog.fadeTime ) then
-            smog.counter = smog.counter + 1
+    end
+    if( system.getTimer() >= smog.fadeTime ) then
+        smog.counter = smog.counter + 1
             if( smog.counter > 5 ) then
                 smog.counter = 0
                 smog.alpha = smog.alpha - ( 0.001 * ( 60 / display.fps ) )
@@ -110,8 +115,7 @@ local function update(mainScene, car, frontTire, frontHubcap, rearTire, rearHubc
                smog:removeSelf()
                smog = nil
             end
-        end
-
+    end
 end
 
 
@@ -263,8 +267,6 @@ function cutlass:spawn(scene)
         mainScene.obstacles:addMisc( car )
         mainScene.obstacles:addMisc( frontTire )
         mainScene.obstacles:addMisc( rearTire )
-        --mainScene.obstacles:addMisc( frontHubcap )
-        --mainScene.obstacles:addMisc( rearHubcap )
 
         physics.addBody( car, "dynamic",
                   { density=d, friction=f, bounce=b, shape = {   -105.5, -3.5  ,  -71.5, 8.5  ,  -85.5, 20.5  ,  -104.5, 21.5  } },
@@ -281,10 +283,6 @@ function cutlass:spawn(scene)
     table.insert( obstacleGroup.bodies, car )
     table.insert( obstacleGroup.bodies, frontTire )
     table.insert( obstacleGroup.bodies, rearTire )
-    
-    
-    
-   
 
     return obstacleGroup
 end

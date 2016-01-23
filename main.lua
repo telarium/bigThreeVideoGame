@@ -1,8 +1,7 @@
------------------------------------------------------------------------------------------
---
--- main.lua
---
------------------------------------------------------------------------------------------
+----------------------------------
+--    THE BIG 3 VIDEO GAME     ---
+-- andrew@langleycreations.com ---
+----------------------------------
 
 gameNetwork = require "gameNetwork"
 storyboard = require( "storyboard" )
@@ -77,30 +76,6 @@ local function test(event)
 end
 
 local function gameNetworkInitialized( event )
-    --print( "GAME NETWORK INITIALIZED!" )
-    --print( event )
-    --print( event.type )
-    --print( event.data )
-    --print( event.errorCode )
-    --print( event.errorMessage )
-    
-    --[[
-    gameNetwork.request( "setHighScore", 
-                    {
-                    localPlayerScore = { category="CgkIhf7UyIMOEAIQAA", value=100000, listener=test },
-                    })
-    
-    gameNetwork.request( "loadScores", 
-        { 
-            leaderboard = { 
-                category = "CgkIhf7UyIMOEAIQAA", 
-                playerScope = "Global", 
-                timeScope = "AllTime", 
-                range={1,50} 
-            },
-            listener = requestCallback,
-        } )
-        ]]
     return true
 end
 
@@ -163,31 +138,29 @@ if( math.random( 2 ) == 2 ) then
     end
     
 -- Set the audio mix mode to allow sounds from the app to mix with other sounds from the device
-	if audio.supportsSessionProperty == true then
-            audio.setSessionProperty(audio.MixMode, audio.AmbientMixMode)
-	end
+if audio.supportsSessionProperty == true then
+    audio.setSessionProperty(audio.MixMode, audio.AmbientMixMode)
+end
 	 
-	-- Store whether other audio is playing.  It's important to do this once and store the result now,
-        -- as referring to audio.OtherAudioIsPlaying later gives misleading results, since at that point
-        -- the app itself may be playing audio
-	storyboard.state.isOtherAudioPlaying = false
+-- Store whether other audio is playing.  It's important to do this once and store the result now,
+-- as referring to audio.OtherAudioIsPlaying later gives misleading results, since at that point
+-- the app itself may be playing audio
+storyboard.state.isOtherAudioPlaying = false
 	 
-	if audio.supportsSessionProperty == true then
-            if not(audio.getSessionProperty(audio.OtherAudioIsPlaying) == 0) then
-                storyboard.state.isOtherAudioPlaying = true
-            end
-	end
+if audio.supportsSessionProperty == true then
+    if not(audio.getSessionProperty(audio.OtherAudioIsPlaying) == 0) then
+        storyboard.state.isOtherAudioPlaying = true
+    end
+end
 
 if ( system.getInfo("environment") == "simulator" ) then
     storyboard.state.isOtherAudioPlaying = true
 end
-
     
 --local fps = require("fps")
 --local performance = fps.PerformanceOutput.new();
 --performance.group.x, performance.group.y = display.contentWidth/2,  50;
 --performance.alpha = 0.6; -- So it doesn't get in the way of the rest of the scene
-
 
 -- load menu screen
 local bPlayIntro = true
@@ -203,7 +176,6 @@ if( bPlayIntro ) then
     storyboard.gotoScene( "splashScreen" )
 else
     storyboard.gotoScene( "gameCredits" )
-    --storyboard.gotoScene( "menu" )
 end
 
 GA.isDebug                  = false

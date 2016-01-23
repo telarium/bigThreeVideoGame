@@ -1,3 +1,11 @@
+
+----------------------------------
+-- THE BIG 3 VIDEO GAME        ---
+-- andrew@langleycreations.com ---
+----------------------------------
+
+-- Script determine when things appear in the Chicago level and how difficulty ramps up
+
 local mainScene = nil
 local prevMarker = 0
 local spawnOrder = {}
@@ -24,24 +32,28 @@ local function setOffset(num)
        offset = math.floor( mainScene.city.distanceTraveled * 0.1 ) - num
 end
 
+-- Beginning of the game. Enemies spawn slowly
 local function phaseA()
     if( mainScene ) then
         mainScene.enemies:spawn( nil, 2000, 500 )
     end
 end
 
+-- Enemies start spawning faster.
 local function phaseB()
     if( mainScene ) then
         mainScene.enemies:spawn( nil, 500, 500 )
     end
 end
 
+-- ... and faster!
 local function phaseC()
     if( mainScene ) then
         mainScene.enemies:spawn( nil, 250, 500 )
     end
 end
 
+-- Hold everything while Vince is on screen and still alive.
 local function waitForVince(num, myTimer, newOffset )
     if( mainScene.bVinceAlive ) then
         setOffset(num)
@@ -55,9 +67,8 @@ local function waitForVince(num, myTimer, newOffset )
     end
 end
 
+-- Do boring tutorial stuff.
 local startTime = 800
-
-
 local function doTutorial()
     startTime = 2500
     if( not mainScene.tutorialStartTime ) then
@@ -146,7 +157,6 @@ local function doTutorial()
         transition.to( farText, { time=500, delay=myDelay2, alpha=0} )
         transition.to( farStroke, { time=500, delay=myDelay2, alpha=0} )
         
-        
         mainScene.ui.uiGroup:insert( objectiveText )
         mainScene.ui.uiGroup:insert( objectiveStroke )
         mainScene.ui.uiGroup:insert( stayAliveText )
@@ -192,7 +202,6 @@ local function doTutorial()
                 mainScene.enemies:spawn( mainScene.enemies.toaster )
             end
             return
-            --mainScene.powerUps:forceSpawn(3)
         end
         if( not mainScene.bCompletedDashTutorial ) then
             if( mainScene.score > 400 ) then
@@ -211,18 +220,15 @@ local function doTutorial()
                 timer.performWithDelay( 500, message )
                 mainScene.bMessagedDashTutorial = true
             end
-                print( "oh god" )
                 mainScene.obstacles:spawn( mainScene.obstacles.crates )
             end
             return
         end
 
         if( not mainScene.bCompletedPowerTutorial ) then
-            --mainScene.obstacles.bDisableSpawn = true
             if( mainScene.score > 500 ) then
                 mainScene.bCompletedPowerTutorial = true
                 storyboard.state.bTutorialRequired = false
-                --mainScene.obstacles.bDisableSpawn = true
             end
             if( not mainScene.player.bDashing ) then
                  mainScene.player.dashMeter = 0
@@ -251,29 +257,19 @@ end
 
 local counter = 0
 
---storyboard.state.bTutorialRequired = true
-
 function levelData:update()
     counter = counter + 1
     if( counter < 5 ) then
         return
     end
     counter = 0
-	
-	--if ( not bDebug ) then
-	--   bDebug = true
-	--   local jump = secondBossMarker-10
-	--  setOffset(jump)
-	--   checkMarker(jump)
-	--end
-	
+
 	dist = math.floor( mainScene.city.distanceTraveled * 0.1 ) - offset
 
     if( storyboard.state.bTutorialRequired ) then
         mainScene.city.distanceTraveled = 0
         dist = -1
     end
-    
     
     if( dist == -1 ) then
         doTutorial()
@@ -288,9 +284,10 @@ function levelData:update()
         mainScene.tutorialSound2 = nil
         mainScene.tutorialSound3 = nil
     end
-
     
     storyboard.state.bTutorialRequired = false
+
+    -- Set up new stuff after the player reaches various milestones in the level.
 	if( dist <= 1 and checkMarker( 1 ) ) then
 		mainScene.obstacles.bDisableSpawn = true
         mainScene.enemies.jerkoffHands.bEnableAutoSpawn = true
@@ -322,13 +319,10 @@ function levelData:update()
         mainScene.disablePowerupAutoSpawn = false
         mainScene.enemies:spawn( enemy )
     elseif( dist > 60 and checkMarker( 60 ) ) then
-        --profiler = require("Profiler")
---profiler.startProfiler();
 		local enemy = table.remove( spawnOrder, 1 )
 		 mainScene.enemies.mudSharks.bBossBattle = false
 		if( enemy ) then
              enemy.bEnableAutoSpawn = true
-       
             mainScene.enemies:spawn( enemy )
          end
          mainScene.disablePowerupAutoSpawn = false
@@ -340,7 +334,6 @@ function levelData:update()
 		end
 		
 		local num = math.random(3)
-		--num = 2
 		if ( num == 1 ) then
 		  setOffset(300-1)
 		  return
@@ -425,7 +418,6 @@ function levelData:update()
 	    self.timer = timer.performWithDelay( 500, phaseC, 0 )
 	    mainScene.enemies.redBats.difficulty = 3
 	end
-	--print( dist )
 end
 
 

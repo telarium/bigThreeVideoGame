@@ -1,3 +1,12 @@
+----------------------------------
+--    THE BIG 3 VIDEO GAME     ---
+-- andrew@langleycreations.com ---
+----------------------------------
+
+-- Script controls properties of all objects lying in the street that need to be knocked over
+-- for the Chicago endless runner level
+
+
 local mainScene = nil
 local prevTime = system.getTimer()
 local spawnTime = system.getTimer()
@@ -6,6 +15,7 @@ local obstacleObjects = {
     activeObstacleGroups = {}
 }
 
+-- Discard objects if they've moved off screen or have been knocked over too long
 local function objectDiscard(obj)
     if( mainScene.obstacles.collidedObjects ) then
         for i, collided in ipairs( mainScene.obstacles.collidedObjects ) do
@@ -36,10 +46,9 @@ end
 
 local function spawn(self,obj)
 
+    -- Determine what gets spawned
     if( not obj ) then
         local num = math.random(6)
-        --print( num )
-        --num = 8
         if( num==1 ) then
             table.insert(self.activeObstacleGroups, mainScene.obstacles.portaPotties:spawn(mainScene))
         elseif( num == 2 ) then
@@ -102,8 +111,7 @@ local function checkForDiscardedObject(self,obj,scene)
     end
     
     -- If this object has been flagged to discard, remove it from the table and destroy the object.
-    if( bDiscard or obj.forceDiscard or not obj.contentBounds ) then
-        
+    if( bDiscard or obj.forceDiscard or not obj.contentBounds ) then    
         objectDiscard(obj)
         for i=1,table.getn( self.activeObstacleGroups ) do
             if( self.activeObstacleGroups[i] ) then
@@ -289,9 +297,6 @@ end
 
 function obstacleObjects:update()
     local obj = nil
-    
-    
-    
     -- Check to see if object has moved off screen. If so, destroy it.
     for i, obj in ipairs( mainScene.obstacles.getActive(false) ) do
         if( obj.update ) then
@@ -318,7 +323,6 @@ local function discardedUpdate(event)
 	if( mainScene.obstacles.bDisableSpawn or mainScene.specialPowers:checkSpawn() ) then
 		return
 	end
-
 	
 	if( table.getn( obstacleObjects:getActive(true) ) <= 0 and  table.getn( obstacleObjects:getCollided() ) <= 1 ) then
 		if( not spawnTime ) then
@@ -392,7 +396,6 @@ function obstacleObjects:destroy()
     for i=1,table.getn( mainScene.obstacles.miscObstacles ) do
         objectDiscard( mainScene.obstacles.miscObstacles[i] )
     end
-    
     
     for i=1,table.getn( mainScene.obstacles.activeObstacleGroups ) do
         if ( mainScene.obstacles.activeObstacleGroups[i].dispose ) then

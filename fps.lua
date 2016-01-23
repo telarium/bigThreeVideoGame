@@ -1,3 +1,11 @@
+----------------------------------
+--    THE BIG 3 VIDEO GAME     ---
+-- andrew@langleycreations.com ---
+----------------------------------
+
+-- Display fps info (for debug purposes only)
+
+
 module(..., package.seeall)
 PerformanceOutput = {};
 PerformanceOutput.mt = {};
@@ -75,7 +83,6 @@ end
  
  
 local instance = nil;
--- Singleton
 function PerformanceOutput.new()
         if(instance ~= nil) then return instance; end
         local self = {};

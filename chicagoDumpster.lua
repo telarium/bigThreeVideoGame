@@ -1,3 +1,12 @@
+
+----------------------------------
+-- THE BIG 3 VIDEO GAME        ---
+-- andrew@langleycreations.com ---
+----------------------------------
+
+-- Script controls the behavior of the dumpsters lying in the streets
+-- for the Chicago endless runner level
+
 local dumpster = {
    
 }
@@ -34,8 +43,7 @@ local function spawnAgents(mainScene, objects, spawnX)
     dumpsterBase.angle = angle
     dumpsterBase.id = "base"
     dumpsterBase.explosionScale = 2
-    
-    
+
     mainScene.city.displayGroup:insert( dumpsterBase )
     table.insert( objects, dumpsterBase )
     
@@ -60,7 +68,6 @@ local function spawnAgents(mainScene, objects, spawnX)
     lidRight.x = lidLeft.x + 50
     lidRight.y = lidLeft.y
     lidRight.linearX = 10
-    --lidRight.angle = 70
     lidRight.isAwake = true
     mainScene.city.displayGroup:insert( lidRight )
     lidRight.id = "lidRight"
@@ -84,8 +91,6 @@ local function spawnAgents(mainScene, objects, spawnX)
     	garbage2.anchorY = 0.5
         garbage2.x = dumpsterBase.x + 10
         garbage2.y = dumpsterBase.y + 10
-        --garbage2.linearX = 40
-        --garbage2.angle = 20
         garbage2.disableEnemyCollision = true
         garbage2.isAwake = true
         garbage2.id = "garbage2"

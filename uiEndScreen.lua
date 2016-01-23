@@ -1,3 +1,10 @@
+----------------------------------
+--    THE BIG 3 VIDEO GAME     ---
+-- andrew@langleycreations.com ---
+----------------------------------
+
+-- Script UI for the player result (current score, high score, etc)
+
 local myScene = nil
 local bTransition = nil
 require( "fileStorage" )

@@ -1,3 +1,10 @@
+----------------------------------
+--    THE BIG 3 VIDEO GAME     ---
+-- andrew@langleycreations.com ---
+----------------------------------
+
+-- Script writes a JSON file to store the player's high scores and other data.
+
 
 -- load the JSON library.
 local json = require("json")

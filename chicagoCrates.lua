@@ -1,3 +1,12 @@
+----------------------------------
+-- THE BIG 3 VIDEO GAME        ---
+-- andrew@langleycreations.com ---
+----------------------------------
+
+-- Script controls the properties of crate obstacles lying in the street
+-- for the Chicago endless runner level
+
+
 local crates = {
     image="images/crate",
     imageHeight=50,
@@ -12,6 +21,7 @@ local function getCrateNum()
     end
 end
 
+-- Stack the crates vertically when they appear on screen
 function crates:doVerticalStack(mainScene, offset)
     if( not offset ) then
         offset = 0
@@ -50,6 +60,7 @@ function crates:doVerticalStack(mainScene, offset)
     return crates
 end
 
+-- Lay crates out horizontally on the street when they appear on screen
 function crates:doHorizontalStack(mainScene)
     local crates = {}
     local prevObject = nil

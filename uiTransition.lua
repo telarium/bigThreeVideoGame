@@ -1,11 +1,16 @@
+----------------------------------
+--    THE BIG 3 VIDEO GAME     ---
+-- andrew@langleycreations.com ---
+----------------------------------
+
+-- Script animates an iris-out transition inbetween scenes
+
 local displayGroup = nil
 local transition = nil
 
 local UITransition = {
 
 }
-
-
 
 function UITransition:execute(scene, delay)
 	local sceneToLoad = scene
@@ -31,12 +36,9 @@ function UITransition:execute(scene, delay)
 		   
 		   storyboard.purgeAll()
 		   storyboard.removeAll()
-           
-		   --local newScene = storyboard.loadScene( sceneToLoad, true )
 		   storyboard.gotoScene( sceneToLoad )
 	  end
 	end
-
     
     displayGroup = display.newGroup()
     addDisplayGroup( displayGroup )

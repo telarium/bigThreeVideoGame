@@ -1,9 +1,16 @@
+----------------------------------
+-- THE BIG 3 VIDEO GAME        ---
+-- andrew@langleycreations.com ---
+----------------------------------
+
+-- Script controls the basketball behaviors and properties
+-- for the Chicago endless runner level
+
 local basketballs = {
     bPlayedVoiceAudio = false,
     sounds = nil,
     voiceFile = nil
 }
-
 
 function basketballs:spawn(scene)
     mainScene = scene
@@ -29,8 +36,7 @@ function basketballs:spawn(scene)
     while ( i > 0 ) do
         i = i - 1
 
-        basketball = display.newImageRect( "images/basketball.png", 28, 28 )
-        
+        basketball = display.newImageRect( "images/basketball.png", 28, 28 )        
         basketball.collisionDistance = 25
         
         if( collisionIndex == 0 ) then
@@ -94,10 +100,6 @@ function basketballs:spawn(scene)
         end
         
         basketball:addEventListener( "postCollision", basketball.onGroundImpact )
-        
-        --basketball.update = function()
-            --update(basketball, mainScene)
-        --end
     end
     
     display.setDefault( "magTextureFilter", "linear" )
@@ -108,7 +110,7 @@ function basketballs:spawn(scene)
 
     end
     
-    return balls
+    return balls -- ha ha
 end
 
 return basketballs

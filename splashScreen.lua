@@ -1,7 +1,9 @@
------------------------------------------------------------------------------------------
---
---
------------------------------------------------------------------------------------------
+----------------------------------
+--    THE BIG 3 VIDEO GAME     ---
+-- andrew@langleycreations.com ---
+----------------------------------
+
+-- Script for the intro scene (Terrifying Time anti-drug message)
 
 -- Turn off image smoothing. So that pixel art looks awesome.
 display.setDefault( "magTextureFilter", "nearest" )

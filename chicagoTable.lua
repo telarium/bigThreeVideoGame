@@ -1,3 +1,11 @@
+----------------------------------
+--    THE BIG 3 VIDEO GAME     ---
+-- andrew@langleycreations.com ---
+----------------------------------
+
+-- Script controls the properties of the tables of food (donuts, bananas, etc)
+-- for the Chicago endless runner level
+
 local tableSprite = nil
 local pie = nil
 local box = nil
@@ -62,14 +70,14 @@ function tableObject:setup(mainScene)
         if( not donut1.y ) then
             return
         end
-        
-           donut1.y = donut1.y - 50
-           donut2.y = donut1.y
-           donut3.y = donut1.y
+
+        donut1.y = donut1.y - 50
+        donut2.y = donut1.y
+        donut3.y = donut1.y
            
-           if( banana.y ) then
+        if( banana.y ) then
             banana.y = banana.y - 100
-           end
+        end
            
    
        physics.addBody( tableSprite, "dynamic",
@@ -165,8 +173,8 @@ function tableObject:setup(mainScene)
         i = math.random(3)+3
     end
     
-        local y = box.y
-        while ( i > 0 ) do
+    local y = box.y
+    while ( i > 0 ) do
             i = i - 1
             box = display.newImageRect( "images/tableBox.png", 40, 15 )		
         	box.anchorX = 0.5
@@ -189,8 +197,7 @@ function tableObject:setup(mainScene)
             mainScene.city.displayGroup:insert( box )
             table.insert( objects, box )
             table.insert( boxes, box )
-        end
-    
+    end
     
     banana = display.newImageRect( "images/tableBanana.png", 15, 20 )		
     banana.anchorX = 0.5

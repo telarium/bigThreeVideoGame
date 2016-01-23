@@ -1,18 +1,21 @@
+
+----------------------------------
+-- THE BIG 3 VIDEO GAME        ---
+-- andrew@langleycreations.com ---
+----------------------------------
+
+-- Script represents the main scene for the Chicago endless runner level and its controls
+
+
 local scene = storyboard.newScene()
 
 display.setDefault( "magTextureFilter", "linear" )
 display.setDefault( "minTextureFilter", "linear" )
 
-
-
-
 local hitSound1 = nil
 local cityChannel = nil
 
 mainScene = scene
-
-
---------------------------------------------
 
 scene.timeScale = 0.5
 
@@ -81,16 +84,13 @@ function scene:onDashButton(event)
    end
 end
 
-
+-- Set various properties of physics. Tweak to get better game performance
 function scene:setPhysics( bSet )
     if( bSet and not scene.bPhysicsSet ) then
         scene.bPhysicsSet = true
         physics.setPositionIterations( 1 )
         physics.setVelocityIterations( 2 )
         physics.start(false)
-        --physics.setAverageCollisionPositions( true )
-        --physics.setTimeStep( 1/70 )
-        --physics.setDrawMode( "hybrid" )
         physics.addBody( scene.ground, "static", { friction=0.3, shape=scene.groundShape } )
     elseif( not bSet and scene.bPhysicsSet ) then
         physics.removeBody( scene.ground )
@@ -164,9 +164,6 @@ local function gameLoop(event)
 	   mainScene.collisionCounter = 0
 	end
     
-    --if( mainScene.testCollisionCounter > 5 ) then
-    --    print( mainScene.testCollisionCounter )
-    --end
     mainScene.testCollisionCounter = 0
     
     if( counter > 3 ) then
@@ -255,8 +252,6 @@ function scene:showDamageHit( x,y, bInCityGroup )
     damageSprite.y = y
     damageSprite.blendMode = "add"
 
-    
-    
     transition.to( damageSprite, { time=100, delay=0, xScale=1} )
     transition.to( damageSprite, { time=100, delay=0, yScale=1} )
     
@@ -398,33 +393,11 @@ local numEnemies = 0
 local testCounter = 0
 function scene:checkCollision( obj1, obj2 )
     distvalue = 1000
-    --if( obj1.name ) then
-        --print( obj1.name )
-    --end
-    --if( obj2.name ) then
-        --print( obj2.name )
-    --end
-
-   --if( not obj1 or not obj2 ) then
-   --   return false;
-   --end
-   
-   --if( obj1 ) then
-   -- return false
-   --end
-
-   --if( not obj1.contentBounds or not obj2.contentBounds ) then
-   --   return false;
-   --end
    
    if( obj1.bDisableCollision or obj2.bDisableCollision ) then
    	  return false;
    end
-   
-   --if( not obj1.isVisible or not obj2.isVisible ) then
-    --  return false;
-   --end
-   
+
    if( obj1 ~= mainScene.player.avatar and obj2 ~= mainScene.player.avatar ) then
     --if( obj1.collisionIndex and obj1.collisionIndex ~= mainScene.collisionCounter ) then
     -- return false
@@ -440,15 +413,6 @@ function scene:checkCollision( obj1, obj2 )
    if( obj1.name == "weapon" and (obj2.x - obj2.width/2 ) > obj1.x + 50 ) then
       return
    end
-    
-    
-    --numEnemies = table.getn( mainScene.enemies.activeEnemies )
-    
-    --if( numEnemies and numEnemies > 5 ) then
-      --  if( numEnemies < 10 and distValue < 200 ) then
-     --       distValue = 200
-     --   end
-    --end
    
    testX, testY = obj1.x-obj2.x, obj1.y-obj2.y
    
@@ -465,23 +429,13 @@ function scene:checkCollision( obj1, obj2 )
         else
             return false
         end
-       
-        --if( square(testX* testX + testY* testY) <= distValue ) then
-        --    return true
-        --else
-          --  return false
-       --end
     end
-    
-    --if( obj1 == mainScene.player.avatar or obj2 == mainScene.player.avatar ) then
-       -- distValue = 200
+
     if( obj1.bPerciseCollisionDetection or obj2.bPerciseCollisionDetection ) then
         distValue = 300
     else
         distValue = 50
     end
-    
-    
    
    if( not obj1.bPerciseCollisionDetection and not obj2.bPerciseCollisionDetection ) then
        distValue = 50
@@ -688,18 +642,18 @@ function scene:exitScene( event )
     scene.player = nil
     scene.sound = nil
     scene.levelData = nil
-    
-            
-        unrequire("chicagoLevelData");
-        unrequire("chicagoCityObject");
-        unrequire("chicagoPlayerObject");
-        unrequire("chicagoEnemyObjects")
-        unrequire("chicagoObstacleObjects");
-        unrequire("chicagoWeaponObjects")
-        unrequire("chicagoSpecialPowers")
-        unrequire("chicagoPowerUps" )
-        unrequire("chicagoUI")
-        unrequire("chicagoSound" )
+
+    -- Preventive measures to try to increase garbage collection
+    unrequire("chicagoLevelData");
+    unrequire("chicagoCityObject");
+    unrequire("chicagoPlayerObject");
+    unrequire("chicagoEnemyObjects")
+    unrequire("chicagoObstacleObjects");
+    unrequire("chicagoWeaponObjects")
+    unrequire("chicagoSpecialPowers")
+    unrequire("chicagoPowerUps" )
+    unrequire("chicagoUI")
+    unrequire("chicagoSound" )
     
     mainScene = nil
 end

@@ -1,7 +1,17 @@
+----------------------------------
+--    THE BIG 3 VIDEO GAME     ---
+-- andrew@langleycreations.com ---
+----------------------------------
+
+-- Script controls the black hawk behaviors and properties
+-- for the Chicago endless runner level
+
+
 local blackHawks = {
     
 }
 
+-- Calcuate hawk's flight path
 local function doQuadraticBezierCurve(point1, point2, point3, t)
     local a = (1.0 - t) * (1.0 - t);
     local b = 2.0 * t * (1.0 - t);
@@ -19,6 +29,7 @@ local function update(hawk, mainScene)
 		if ( hawk.t > 1 ) then
 			hawk.t = 1
 		end
+        -- Animate hawk's movement
 		hawk.x, hawk.y = doQuadraticBezierCurve( hawk.origin,hawk.midPoint, hawk.destination, hawk.t )
 	end	
 end
@@ -36,7 +47,7 @@ function blackHawks:spawn(scene)
         self.hawkSound = scene.sound:loadDamageSound( "hawk.wav" )
         mainScene.sound:playDamageSound( self.hawkSound )
         
-        timer.performWithDelay( 30000, dispose, 1 )
+        timer.performWithDelay( 30000, dispose, 1 ) -- Unload sound after a period of time
     end
     
     if( not self.voiceSound ) then
@@ -63,7 +74,6 @@ function blackHawks:spawn(scene)
 	mainScene.city.displayGroup:insert( blackHawk )
 	blackHawk:setSequence( "loop" )
 	blackHawk:play()
-   --blackHawk.bPerciseCollisionDetection = true
    blackHawk.collisionDistance = 50
 	
 	local speed = mainScene.city.curSpeed

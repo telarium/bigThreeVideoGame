@@ -1,3 +1,11 @@
+----------------------------------
+-- THE BIG 3 VIDEO GAME        ---
+-- andrew@langleycreations.com ---
+----------------------------------
+
+-- Script sets the properties and behaviors of hands that emerge
+-- for the Chicago endless runner level
+
 
 local jerkoffHands = {
     activeHand = nil,

@@ -1,10 +1,16 @@
+----------------------------------
+--    THE BIG 3 VIDEO GAME     ---
+-- andrew@langleycreations.com ---
+----------------------------------
+
+-- Script controls the trophy properties that appear in the street
+-- for the Chicago endless runner level
+
 local trophy = {
    
 }
 
 local function addGroundImpact( obj, mainScene, self )
-    -- 
-   -- bottomBase.groundSound2 = mainScene.sound:load( "impact8.wav" )
        local num = math.random( 2 )
        if( not self.groundSound1 ) then
             self.groundSound1 = mainScene.sound:load( "impact7.wav" )
@@ -44,13 +50,6 @@ function trophy:setup(mainScene)
 	bottomBase.anchorY = 0.5
     bottomBase.x = x + bottomBase.width/2
     bottomBase.y = mainScene.groundY - bottomBase.height/2 - 3	
-   
-   
-   --physics.addBody( tableSprite, "dynamic",
-  --{ density=.03, friction=0.2, bounce=0.3, shape={   71.5, 15.5  ,  66.5, -6.5  ,  84.5, -19.5  ,  82.5, 22.5  } },
-  --{ density=.03, friction=0.2, bounce=0.3, shape={   -84.5, 21.5  ,  -86.5, -19.5  ,  -70.5, -6.5  ,  -75.5, 17.5  } },
-  --{ density=.03, friction=0.2, bounce=0.3, shape={   66.5, -6.5  ,  -70.5, -6.5  ,  -86.5, -19.5  ,  84.5, -19.5  } }
---)
 
     bottomBase.isAwake = true
     bottomBase.bTestForCollision = true

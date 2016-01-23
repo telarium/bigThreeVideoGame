@@ -1,3 +1,10 @@
+----------------------------------
+--    THE BIG 3 VIDEO GAME     ---
+-- andrew@langleycreations.com ---
+----------------------------------
+
+-- Script handles keyboard events for testing in the Corona SDK environment only
+
 local keyboardInput = {}
 
 if system.getInfo("environment") == "device" then

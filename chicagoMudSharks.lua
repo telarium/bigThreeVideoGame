@@ -1,7 +1,17 @@
+----------------------------------
+--    THE BIG 3 VIDEO GAME     ---
+-- andrew@langleycreations.com ---
+----------------------------------
+
+-- Script controls the flying mudshark behaviors and properties
+-- for the Chicago endless runner level
+
+
 local mudSharks = {
 
 }
 
+-- Animate the flight path of a mudshark on a bezier curve
 local function doQuadraticBezierCurve(point1, point2, point3, t)
     local a = (1.0 - t) * (1.0 - t);
     local b = 2.0 * t * (1.0 - t);
@@ -55,7 +65,6 @@ function mudSharks:spawn(scene)
 	mudShark.bPerciseCollisionDetection = true
     mudShark.xChoke = 0
     mudShark.yChoke = 10
-   -- mudShark.collisionDistance = 45
     
 	mudShark:play()
 	
@@ -73,10 +82,7 @@ function mudSharks:spawn(scene)
 	mudShark.origin = {x=mudShark.x,y=mudShark.y}
 	mudShark.destination = {x=destx,y=mudShark.y}
 	mudShark.midPoint = {x=mudShark.x - ((mudShark.x - destx )/2),y=randomHeight}
-	
-	mudShark.health = 1
-    
-    
+	mudShark.health = 1  
     mudShark.name = "mudShark"
 	
 	mudShark.update = function()

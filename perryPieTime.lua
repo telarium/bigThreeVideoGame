@@ -1,3 +1,10 @@
+----------------------------------
+--    THE BIG 3 VIDEO GAME     ---
+-- andrew@langleycreations.com ---
+----------------------------------
+
+-- Script for the Perry Pie Time minigame
+
 local storyboard = require( "storyboard" )
 local scene = storyboard.newScene()
 
@@ -71,7 +78,6 @@ function dragBody( event, params )
 		end
 	end
 
-	-- Stop further propagation of touch event
 	return true
 end
 
@@ -281,7 +287,6 @@ end
 local function playMoleIntro()
     audio.play( scene.moleIntroSound )
 end
-
 
 -- Called immediately after scene has moved onscreen:
 function scene:enterScene( event )
@@ -551,13 +556,9 @@ end
 -------------------------------------------------------------------------------
 
 scene:addEventListener( "createScene", scene )
-
 scene:addEventListener( "enterScene", scene )
-
 scene:addEventListener( "exitScene", scene )
-
 scene:addEventListener( "destroyScene", scene )
-
 
 -----------------------------------------------------------------------------------------
 

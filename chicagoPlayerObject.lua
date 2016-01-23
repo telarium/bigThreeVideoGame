@@ -1,3 +1,12 @@
+----------------------------------
+--    THE BIG 3 VIDEO GAME     ---
+-- andrew@langleycreations.com ---
+----------------------------------
+
+-- Script controls the properties of Mole, Don, and Perry
+-- for the Chicago endless runner level
+
+
 local mainScene = nil
 local invisbilityTime = 1500
 local kCollisionDistance = 60
@@ -21,9 +30,7 @@ end
 local function executeJump( self )
     if( self.bJumping ) then
         self.avatar:setSequence( "jump" )
-        --if( self.bDashing ) then
          self.avatar:play()
-        --end
         self.bJumpDisabled = true
         self.avatar.y = self.avatar.y - ( ( self.maxHorizontalVelocity * mainScene.timeScale ) * ( 60 / display.fps ) )
         if( self.avatar.y <= self.maxJumpHeight ) then
@@ -143,7 +150,6 @@ local function doDamage(self, obj, bEnemy)
                 end
             end
             
-             
           local num = math.random( 3 )
           if( num < 3 ) then
             mainScene.sound:playVoice( self.ouchSound, 0.25 )
@@ -162,7 +168,6 @@ end
 local function evalDamage(self)
     if( self.damageTime ) then
         if( not self.damageCounter ) then
-			
             self.damageCounter = 0
         end
 		
@@ -200,12 +205,10 @@ function playerObject:dash()
 
 		self.avatar:play()
 		mainScene.city:setSpeed( -30,0.06 )
-        --if( not mainScene.storyboard.state.bPlayedChicago and system.getInfo("platformName") == "Android" ) then
-            self.dashEffect.isVisible = true
-            self.dashEffect:play()
-            self.dashEffect.alpha = 0
-            self.dashTransition = transition.to( self.dashEffect, { time=1000, delay=0, alpha=0.6} )
-        --end
+        self.dashEffect.isVisible = true
+        self.dashEffect:play()
+        self.dashEffect.alpha = 0
+        self.dashTransition = transition.to( self.dashEffect, { time=1000, delay=0, alpha=0.6} )
     end
 end
 
@@ -323,14 +326,9 @@ function playerObject:init(scene)
         self.avatar.yOffset = 0
 	end
 		
-    
-	--self.avatar = display.newImageRect( "images/perrytest2x.png", 64, 64 )
 	self.avatar.anchorX = 0.5
 	self.avatar.anchorY = 1
 	self.avatar.x, self.avatar.y = 200, mainScene.groundY - self.avatar.yOffset
-
-    --self.bJumping = true
-    
     self.maxJumpHeight = mainScene.groundY - 180
     		
 	mainScene.city.displayGroup:insert( self.avatar )
@@ -360,7 +358,6 @@ function playerObject:init(scene)
     display.setDefault( "magTextureFilter", "linear" )
     display.setDefault( "minTextureFilter", "linear" )
     
-	
 	self.hitSound = scene.sound:loadDamageSound( "playerDamage.wav" )
     self.ouchSound = scene.sound:loadVoice( "voice-" .. mainScene:getSelectedCharacter() .. "Ouch.wav" )
     
@@ -433,17 +430,14 @@ function playerObject:update()
     
     if( self.counter > 5 ) then
         self.counter = 0
-    --local frame = self.avatar.currentFrame\
-    
+
     if( not mainScene.player.avatar.bDoNotScale ) then
         self.avatar.timeScale = math.abs( mainScene.city:getSpeed() ) / 6
         if( self.avatar.timeScale > 2 ) then
             self.avatar.timeScale = 2
         end
     end
-
-    --self.avatar.currentFrame = frame
-        end
+    end
         
     if( mainScene:getSelectedCharacter() == "don" and self.bDashing ) then
         self.avatar.timeScale = 1

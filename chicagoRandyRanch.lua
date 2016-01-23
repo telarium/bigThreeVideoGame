@@ -1,6 +1,17 @@
+----------------------------------
+--    THE BIG 3 VIDEO GAME     ---
+-- andrew@langleycreations.com ---
+----------------------------------
+
+-- Script controls the randy ranch behaviors and properties
+-- for the Chicago endless runner level
+
+
 local randyRanch = {
+
     bPlayedVoice = false
 }
+
 local function update(mainScene,topDrop,midDrop,bottomDrop,self)
     if( topDrop.x ) then
         local x,y = mainScene.city.displayGroup:localToContent( topDrop.x, topDrop.y )
@@ -74,7 +85,6 @@ local function update(mainScene,topDrop,midDrop,bottomDrop,self)
         end
     end
 end
-
 
 function randyRanch:spawn(scene)
     mainScene = scene

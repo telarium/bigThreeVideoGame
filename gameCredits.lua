@@ -1,3 +1,10 @@
+----------------------------------
+--    THE BIG 3 VIDEO GAME     ---
+-- andrew@langleycreations.com ---
+----------------------------------
+
+-- Script controls end credits scene.
+
 local storyboard = require( "storyboard" )
 local scene = storyboard.newScene()
 
@@ -203,11 +210,8 @@ end
 -------------------------------------------------------------------------------
 
 scene:addEventListener( "createScene", scene )
-
 scene:addEventListener( "enterScene", scene )
-
 scene:addEventListener( "exitScene", scene )
-
 scene:addEventListener( "destroyScene", scene )
 
 

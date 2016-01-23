@@ -1,8 +1,9 @@
------------------------------------------------------------------------------------------
---
--- menu.lua
---
------------------------------------------------------------------------------------------
+----------------------------------
+--    THE BIG 3 VIDEO GAME     ---
+-- andrew@langleycreations.com ---
+----------------------------------
+
+-- Script for the main menu! Duh.
 
 -- Turn off image smoothing. So that pixel art looks awesome.
 display.setDefault( "magTextureFilter", "nearest" )
@@ -100,15 +101,11 @@ end
 local function showFirstScreen(character)
     transition.to( scene.logo, { time=600, delay=0, xScale=1, transition=easing.outExpo} )
     transition.to( scene.logo, { time=600, delay=0, yScale=1, transition=easing.outExpo } )
-    
-    
-    
+
     local perryDelay = 0
     local donDelay = 100
     local moleDelay = 200
-    
-    
-    
+
     if( character == "perry" ) then
         transition.to( scene.character1, { time=400, delay=0, xScale=1, transition=easing.outExpo} )
         transition.to( scene.character1, { time=400, delay=0, yScale=1, transition=easing.outExpo} )
@@ -163,9 +160,6 @@ local function showFirstScreen(character)
     transition.to( scene.selectText, { time=200, delay=730, alpha=1} )
 end
 
---------------------------------------------
-
--- start frames: 7, 14, 18
 local frame =0
 local function perrySpriteListener( event )
 	if( event.phase == "next" ) then
@@ -381,8 +375,6 @@ local function showCharacterScreen(character)
     transition.to( scene.backButton, { time=800, delay=200, y=display.contentCenterY + 15, transition=easing.outExpo} )
     transition.to( scene.backButton, { time=800, delay=200, x=10, transition=easing.outExpo} )
     
-    
-    
     local i = 0
     scene.bodyText.text = ""
     
@@ -413,16 +405,6 @@ local function onSelectPerry()
         return
     end
     showCharacterScreen(scene.character1)
-    
-    --if( bTransitioning ) then
-    --    return
-    --end
-   -- bTransitioning = true
-    --storyboard.state.character = "perry"
-    --bTransitioning = true
-    --audio.fadeOut( { channel=1, time=500 } )
-	--uiTransition:execute( "chicagoLevel" )
-
 	return true	-- indicates successful touch
 end
 
@@ -469,7 +451,6 @@ function scene:createScene( event )
     local rightEdge = display.contentWidth + ( ( display.actualContentHeight - display.contentWidth ) / 2 )
     local bottomEdge = display.contentHeight + ( ( display.actualContentWidth - display.contentHeight ) / 2 )
     local topEdge = 0 -  ( ( display.actualContentWidth - display.contentHeight ) / 2 )
-	
 	
 	-- Set background color
     display.setDefault( "background", 0, 0, 0 )
@@ -639,18 +620,10 @@ function scene:createScene( event )
     menu.y = display.contentCenterY + 140
     scene.badge.xScale = menu.xScale
     scene.badge.yScale = menu.xScale
-    
-    --local mask = graphics.newMask( "images/badge-mask.png" )
-    ----menu:setMask( mask )
-    --menu.maskX = scene.badge.x
-    --menu.maskY = scene.badge.y + maskY
 
-    
     scene.attractTimer = timer.performWithDelay( 250, showFirstScreen )
 
     scene.attractTimer = timer.performWithDelay( 20000, AttractMode )
-
-
 
     scene.character1:addEventListener( "sprite", perrySpriteListener )
     scene.character2:addEventListener( "sprite", donSpriteListener )
@@ -707,11 +680,6 @@ function scene:exitScene( event )
       scene.character3.title:removeSelf()
     end
     
-
-    --scene.character1:removeEventListener("tap", onSelectPerry)
-    --scene.character2:removeEventListener("tap", onSelectDon)
-    --scene.character3:removeEventListener("tap", onSelectMole)
-    
     scene.character1 = nil
     scene.character2 = nil
     scene.character3 = nil
@@ -746,24 +714,9 @@ function scene:destroyScene( event )
     scene = nil
 end
 
------------------------------------------------------------------------------------------
--- END OF YOUR IMPLEMENTATION
------------------------------------------------------------------------------------------
-
--- "createScene" event is dispatched if scene's view does not exist
 scene:addEventListener( "createScene", scene )
-
--- "enterScene" event is dispatched whenever scene transition has finished
 scene:addEventListener( "enterScene", scene )
-
--- "exitScene" event is dispatched whenever before next scene's transition begins
 scene:addEventListener( "exitScene", scene )
-
--- "destroyScene" event is dispatched before view is unloaded, which can be
--- automatically unloaded in low memory situations, or explicitly via a call to
--- storyboard.purgeScene() or storyboard.removeScene().
 scene:addEventListener( "destroyScene", scene )
-
------------------------------------------------------------------------------------------
 
 return scene

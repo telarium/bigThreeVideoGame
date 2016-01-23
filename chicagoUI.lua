@@ -1,3 +1,11 @@
+----------------------------------
+--    THE BIG 3 VIDEO GAME     ---
+-- andrew@langleycreations.com ---
+----------------------------------
+
+-- Script controls all UI behavior
+-- for the Chicago endless runner level
+
 local mainScene = nil
 local keyInput = nil
 local bDisableDash = false
@@ -192,27 +200,11 @@ function ui:highlightButton( button )
     if( button.disabled or mainScene.bSmoggy or mainScene.bVinceAlive ) then
         return;
     end
-        --if( button == self.specialPowersButton ) then
-        --    self.specialPowersButton.timeOfActivation = system.getTimer()
-        --end
-        --return
-    --end
-    
-    --if( button.idle.isVisible ) then
-    --    return
-    --end
 
 	button.idle.isVisible = true
 	button.idle.alpha = 0.01
 	button.idle:play()
-	
-	--if( button == self.specialPowersButton ) then
-	--   if( system.getTimer() - self.specialPowersButton.timeOfActivation > 20000 ) then
-	--      self.specialPowersButton.timeOfActivation = system.getTimer()
-	--      self:setButtonReminder( self.specialPowersButton, true )
-	--   end
-	--end
-	
+
 	local function removeMe()
 	    if( button.idle.pause ) then
 		  button.idle:pause()

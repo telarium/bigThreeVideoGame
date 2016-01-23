@@ -1,3 +1,12 @@
+----------------------------------
+--    THE BIG 3 VIDEO GAME     ---
+-- andrew@langleycreations.com ---
+----------------------------------
+
+-- Script controls Vince's boring behaviors and properties
+-- for the Chicago endless runner level
+
+
 local mainScene = nil
 
 local vince = {

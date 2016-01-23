@@ -1,4 +1,10 @@
+----------------------------------
+--    THE BIG 3 VIDEO GAME     ---
+-- andrew@langleycreations.com ---
+----------------------------------
 
+-- Script controls the red bats behaviors and properties
+-- for the Chicago endless runner level
 
 local redBats = {
     t = 0,
@@ -11,6 +17,8 @@ local function update(self, bats, batObject, mainScene)
 		batObject = nil
 		return
 	end
+
+  -- Animate the bat flight path on a sin wave
 	batObject.y = ( 50+math.sin(batObject.x/10)*15 ) * ( 60 / display.fps )
 	batObject.x = batObject.x - ( 2 * ( 60 / display.fps ) )
 	local deltaX = 0
@@ -35,7 +43,6 @@ local function update(self, bats, batObject, mainScene)
 		end
 	end
 end
-
 
 function redBats:spawn(scene)
     mainScene = scene

@@ -1,3 +1,11 @@
+----------------------------------
+--    THE BIG 3 VIDEO GAME     ---
+-- andrew@langleycreations.com ---
+----------------------------------
+
+-- Script controls the behavior of Mole, Don, and Perry's special powers
+-- for the Chicago endless runner level
+
 local mainScene = nil
 local analogAtan2 = math.atan2;
 local analog180overPi = ( 180 / math.pi );
@@ -6,7 +14,6 @@ local prevTime = system.getTimer()
 local specialPowers = {
     
 }
-
 
 local function rotateEffect(self)
     local x,y = mainScene.city.displayGroup:localToContent( self.effect.x, self.effect.y )
@@ -60,7 +67,6 @@ local function mySpriteListener( event )
         mainScene.city:setSpeed(nil, 0.05)
     end
     event.target.frameNum = event.target.frameNum + 1
-    --event.target.rotation = event.target.rotation + 1
   end
 end
 
@@ -250,9 +256,6 @@ end
 function specialPowers:addToMeter()
 	mainScene.specialPowers.powerMeter = 1
     mainScene.specialPowers.bPowerActive = false
-	--if( mainScene.specialPowers.powerMeter > 1 ) then
-	--   mainScene.specialPowers.powerMeter = 1
-	--end
 	if( mainScene.bSmoggy or mainScene.bVinceAlive ) then
 	   return
 	end
@@ -353,9 +356,7 @@ end
 
 
 function specialPowers:update()
-   -- if( ( system.getTimer() - prevTime ) > 200 ) then
-        mainScene.ui:updatePowerMeter( self.powerMeter )
-    --end
+    mainScene.ui:updatePowerMeter( self.powerMeter )
     prevTime = system.getTimer()
 
 	

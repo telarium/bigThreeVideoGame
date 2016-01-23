@@ -1,3 +1,12 @@
+
+----------------------------------
+-- THE BIG 3 VIDEO GAME        ---
+-- andrew@langleycreations.com ---
+----------------------------------
+
+-- Script sets the properties of all enemies (things that are alive)
+-- for the Chicago endless runner level
+
 local mainScene = nil
 local prevTime = system.getTimer()
 
@@ -10,15 +19,6 @@ local function enemyDispose(enemy,bDestroyAll)
         enemy:dispose(bDestroyAll)
         enemy.dispose = nil
     end
-    --if( enemy.update ) then
-     --   enemy.update = nil
-    --end
-    --if( enemy.onPlayerCollision ) then
-    --    enemy.onPlayerCollision = nil
-    --end
-    --if( enemy.applyLinearImpulse ) then
-    --    physics.removeBody( enemy )
-    --end
     if( not enemy.bDoNotDestroy ) then
         enemy:removeSelf()
     else
@@ -27,6 +27,7 @@ local function enemyDispose(enemy,bDestroyAll)
     enemy = nil
 end
 
+-- Damage behavior when the enemy attacks the player
 local function doDamageSplash(self,enemy,bCentered)
     local xMin,yMin = mainScene.city.displayGroup:contentToLocal( enemy.contentBounds.xMin, enemy.contentBounds.yMin )
     local xMax,yMax = mainScene.city.displayGroup:contentToLocal( enemy.contentBounds.xMax, enemy.contentBounds.yMax )
@@ -40,6 +41,7 @@ local function doDamageSplash(self,enemy,bCentered)
     end
 end
 
+-- See if enemy needs to be discarded (dead of off screen)
 local function checkForDiscardedObjects(self)
      for i, obj in ipairs( self.activeEnemies ) do
         
@@ -74,6 +76,7 @@ local function checkForDiscardedObjects(self)
    end
 end
 
+-- Behavior for when an enemy is hit by a player weapon
 function enemyObjects:doWeaponHit( weapon, enemy )
     enemy.health = enemy.health - 1
     if( enemy.health > 0 ) then
@@ -95,7 +98,7 @@ function enemyObjects:getActive()
     return mainScene.enemies.activeEnemies
 end
 
-
+-- Get number of active enemies for debugging purposes
 function GetActiveEnemies()
     if( not mainScene ) then
         return nil
@@ -233,10 +236,7 @@ local function collisionCheck(event)
                     enemy.health = 0
                 end
             end
-
-		
-		
-    end
+    end		
 end
 
 
@@ -244,7 +244,6 @@ function enemyObjects:update()
    mainScene.enemies.jerkoffHands:update(mainScene)
    
    if( not mainScene.enemies.sanityCheckTime ) then
-     
         mainScene.enemies.sanityCheckTime = system.getTimer()
    end
 

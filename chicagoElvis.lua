@@ -1,3 +1,13 @@
+
+----------------------------------
+-- THE BIG 3 VIDEO GAME        ---
+-- andrew@langleycreations.com ---
+----------------------------------
+
+-- Script controls the behavior of the "ELVIS" lights lying in the streets
+-- for the Chicago endless runner level
+
+
 local lowAlpha = 0.6
 local highAlpha = 0.95
 local i = 10
@@ -6,6 +16,7 @@ local elvis = {
    sound = mainScene.sound:loadDamageSound( "spark.wav" )
 }
 
+-- Animate flicker of lights on the letters
 local function updateFlicker( obj, parent )    
     if( not obj.x ) then
         obj = nil

@@ -1,3 +1,10 @@
+----------------------------------
+--    THE BIG 3 VIDEO GAME     ---
+-- andrew@langleycreations.com ---
+----------------------------------
+
+-- Script for the "Who Dat Lady" minigame
+
 storyboard.state.bPlayedWhoDatLady = true
 local scene = storyboard.newScene()
 

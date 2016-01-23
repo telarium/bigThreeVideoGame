@@ -1,3 +1,11 @@
+----------------------------------
+--    THE BIG 3 VIDEO GAME     ---
+-- andrew@langleycreations.com ---
+----------------------------------
+
+-- Script for the properties of the Chicago city street itself
+-- Tiles, graphics, speed, etc.
+
 local mainScene = nil
 
 local tileBank = {}
@@ -51,8 +59,6 @@ table.insert( tileBank, tile )
 tile = nil
 
 local signBank = { "citySignASM.gif", "citySignHuck.gif", "citySignMasterGraphics.gif", "citySignFunUniversity.gif", "citySignDragos.gif", "citySignJensenFarms.gif", "citySignLonghornCornOil.gif", "citySignLittleLaddys.gif", "citySignTerrifyingTim.gif", "citySignBeanTownHeat.gif", "citySignJavaho.gif", "citySignSandy.gif" }
-
-
 local cityObject = {
     
 }
@@ -64,6 +70,7 @@ local function getPerc( num1, num2, perc )
     return num1 - offset
 end
 
+-- Animate the sunset (skyline colors, building overlay colors, etc)
 local function showSunset(self, perc)
     
     if( self.oldPerc == perc ) then
@@ -103,17 +110,17 @@ local function showSunset(self, perc)
     self.oldPerc = perc
 end
 
+-- Set propeties of the street that the characters stand on.
+-- Then position everything else based on where the street is located on screen.
 local function setGroundObject(self)
     local scene = mainScene
     scene.ground = display.newRect( scene.leftEdge, scene.foldY, display.actualContentHeight, 40 )
-    --scene.ground:setFillColor( 55 )
     scene.ground.x = display.contentCenterX
     scene.ground.y = scene.foldY - 10
     scene.ground.isVisible = false;
 	
 	scene.groundShape = { -scene.ground.width*3,-scene.ground.height/2, scene.ground.width*3,-scene.ground.height/2, scene.ground.width*3,scene.ground.height/2, -scene.ground.width*3,scene.ground.height/2 }
 	
-
     scene.groundY = scene.ground.y - ( scene.ground.height / 2 )
     scene.ground.y = scene.ground.y - 4
     
@@ -220,7 +227,6 @@ local function setGroundObject(self)
     scene.city.displayGroup:insert( self.colorOverlay )
     scene.city.displayGroup:insert( self.sunsetSprite )
     scene.city.displayGroup:insert( self.skySolidBackground )
-    --scene.city.displayGroup:insert( self.skySolidForeground )
 	scene.city.displayGroup:insert( self.skySprite3 )
 	scene.city.displayGroup:insert( self.skySprite4 )
 	scene.city.displayGroup:insert( self.skySprite1 )
@@ -235,6 +241,7 @@ local function setGroundObject(self)
     display.setDefault( "minTextureFilter", "linear" )
 end
 
+-- Randomize the signs that appear on storefronts.
 local function shuffleSigns(self)
 	local temp = {}
 	for i=1,table.getn( signBank ) do
@@ -290,6 +297,7 @@ local function loadTileImage(self)
     return tile
 end
 
+-- Randomize which buildings will appear on screen
 local function shuffleTiles(self)
 	local temp = {}
 	for i=1,table.getn(tileBank ) do
@@ -302,8 +310,6 @@ local function shuffleTiles(self)
 		table.remove( temp, int )
 	end
 end
-
-
 
 local function spawnNewTile(self)
 	local tile = table.remove( self.activeTiles, 1 )
@@ -328,7 +334,6 @@ end
 function cityObject:setGroundSpawnCoordinate(x,id)
     if( x > mainScene.city.groundSpawnCoordinate ) then
         mainScene.city.groundSpawnCoordinate = x
-
     end
 end
 
@@ -339,7 +344,6 @@ function cityObject:getGroundSpawnCoordinate()
     end
     return mainScene.city.groundSpawnCoordinate
 end
-
 
 function cityObject:setTiles()
     local tileX = mainScene.leftEdge
@@ -358,10 +362,10 @@ function cityObject:setTiles()
 
 end
 
+-- Set speed of how fast the city is moving (or how fast the character is running)
 function cityObject:setSpeed(speed,dampening)
     if( not speed ) then
         speed = self.defaultSpeed + self.speedRampUp
-
     end
     
     if( dampening ) then
@@ -398,6 +402,7 @@ function cityObject:init(scene)
     self:setTiles()
 end
 
+-- Get numbers of items in this display group (for debugging purposes)
 function GetCityObjectNum()
     if( not mainScene ) then
         return
@@ -411,6 +416,7 @@ function cityObject:update()
     end
     self.counter = self.counter + 1
     
+    -- Change speed ramp up value based on the character.
     if( self.speedRampUp < 0.35 ) then
         if( mainScene:getSelectedCharacter() == "mole" ) then
             self.speedRampUp = self.speedRampUp + 0.00006
@@ -434,13 +440,11 @@ function cityObject:update()
     end
     
     local diff = ( self.curSpeed * mainScene.timeScale ) * ( 60 / display.fps )
-    --diff = math.floor(diff+0.5)
     mainScene.ground.x =  mainScene.ground.x - diff
     self.skySolidBackground.x = self.skySolidBackground.x - diff
     self.sunsetSprite.x = self.skySolidBackground.x
     self.colorOverlay.x = self.skySolidBackground.x
 	self.distanceTraveled = self.distanceTraveled - ( diff / 12 )
-    --self.displayGroup:translate(diff, self.displayGroup.y)
     self.displayGroup.x = self.displayGroup.x + diff
     
     self.skySprite1.x = self.skySprite1.x - (diff*.868)

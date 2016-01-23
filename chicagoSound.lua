@@ -1,3 +1,12 @@
+----------------------------------
+--    THE BIG 3 VIDEO GAME     ---
+-- andrew@langleycreations.com ---
+----------------------------------
+
+-- Script handles all sound playback
+-- for the Chicago endless runner level
+-- We use different methods to play sounds on Android and iOS to address delay issues
+
 local soundTime = nil
 local kEnemyImpactChannel = 1
 local kWeaponChannel = 2
@@ -149,8 +158,6 @@ function sound:playVoice( voice, delay, bForce, bDisableGameOver )
     timer.performWithDelay( delay*1000, goVoice, 1 )
 	return true
 end
-
-
 
 function sound:init(scene)
 	mainScene = scene

@@ -1,3 +1,10 @@
+----------------------------------
+--    THE BIG 3 VIDEO GAME     ---
+-- andrew@langleycreations.com ---
+----------------------------------
+
+-- Script for the "Jokey Time" minigame
+
 local storyboard = require( "storyboard" )
 local scene = storyboard.newScene()
 
@@ -44,7 +51,6 @@ local function selectAnswer(answer)
     display.setDefault( "magTextureFilter", "nearest" )
     display.setDefault( "minTextureFilter", "nearest" )
     
-    --scene.bg:removeEventListener( "touch", touchEvent )
     if( scene.attractTimer ) then
         timer.cancel(scene.attractTimer)
         scene.attractTimer = nil

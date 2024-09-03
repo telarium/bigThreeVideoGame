@@ -2,9 +2,11 @@
 
 Welcome to the source code for The Big 3 Videogame!
 
-https://play.google.com/store/apps/details?id=com.langleycreations.big3&hl=en_GB
+Sadly the game is no longer available on the Google Play store, but you can still find the APK to download on sites such as this:
 
-This game was scripted in LUA with Corona SDK. It isn't guaranteed to work in newer builds of Corona, however. I offer no support for this thing, because I'm busy...
+https://apkpure.com/big-3/com.langleycreations.big3
+
+This game was scripted in LUA with Corona SDK, which may no longer be available for use.
 
 # The MIT License (MIT)
 

@@ -1,22 +1,31 @@
-settings = {
-	
-	orientation = {
-		default = "landscapeRight",
-		supported = { "landscapeRight", "landscapeLeft", }
-	},
-    
-	iphone = {
-		plist = {
-			UIStatusBarHidden = true,
-			UIPrerenderedIcon = true, -- set to false for "shine" overlay
-            
-            UIAppFonts = {
-                                "C64 User Mono.ttf"
-                        }
-		}
-	},
-	
-	android =
+settings =
+{
+    -- disable the Solar2D splash screen
+    splashScreen =
+    {
+        enable = false
+    },
+
+    orientation =
+    {
+        default   = "landscapeRight",
+        supported = { "landscapeRight", "landscapeLeft" }
+    },
+
+    iphone =
+    {
+        plist =
+        {
+            UIStatusBarHidden    = true,
+            UIPrerenderedIcon    = true,  -- set to false for "shine" overlay
+            UIAppFonts           =
+            {
+                "C64 User Mono.ttf"
+            }
+        }
+    },
+
+    android =
     {
         usesPermissions =
         {
@@ -24,16 +33,14 @@ settings = {
             "android.permission.VIBRATE"
         },
         googlePlayGamesAppId = "481994030853",
-
     },
-    
+
     plugins =
-{
-   ["CoronaProvider.gameNetwork.google"] =
-   {
-            publisherId = "com.coronalabs",
-            supportedPlatforms = { android = true }
-   },
-},
-    
+    {
+        ["CoronaProvider.gameNetwork.google"] =
+        {
+            publisherId        = "com.coronalabs",
+            supportedPlatforms = { android = true },
+        },
+    },
 }

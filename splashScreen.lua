@@ -81,7 +81,7 @@ function scene:createScene( event )
     text.y = display.contentHeight/1.2
     text.alpha = 0
     
-    copyright = display.newImageRect( "images/copyright.gif", 350, 52 )
+    copyright = display.newImageRect( "images/copyright.png", 350, 52 )
 	copyright.x = display.contentCenterX
 	copyright.y = display.contentCenterY
 	copyright.alpha = 0

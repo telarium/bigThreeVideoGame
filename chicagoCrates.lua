@@ -37,7 +37,7 @@ function crates:doVerticalStack(mainScene, offset)
     
     while( num > 0 ) do
         num = num - 1
-        local myImage = self.image .. tostring( getCrateNum() ) .. ".gif"
+        local myImage = self.image .. tostring( getCrateNum() ) .. ".png"
         local body = display.newImageRect( myImage, self.imageHeight, self.imageWidth )
 		body.anchorX=0.5;body.anchorY=0.5
 	    body.doObstacleCollisionCheck = true
@@ -70,7 +70,7 @@ function crates:doHorizontalStack(mainScene)
     end
     while( num > 0 ) do
         num = num - 1
-        local myImage = self.image .. tostring( getCrateNum() ) .. ".gif"
+        local myImage = self.image .. tostring( getCrateNum() ) .. ".png"
         local body = display.newImageRect( myImage, self.imageHeight, self.imageWidth )	
         --if( num <=2 ) then
             body.doObstacleCollisionCheck = true
@@ -98,7 +98,7 @@ function crates:doCastleStack(mainScene)
     local num = 4
     while( num > 0 ) do
         num = num - 1
-        local myImage = self.image .. tostring( getCrateNum() ) .. ".gif"
+        local myImage = self.image .. tostring( getCrateNum() ) .. ".png"
         local body = display.newImageRect( myImage, self.imageHeight, self.imageWidth )
 		body.anchorX=0.5;body.anchorY=0.5
 		body.y = mainScene.groundY - body.height/2		
@@ -119,7 +119,7 @@ function crates:doCastleStack(mainScene)
     prevObject = nil
     while( num > 0 ) do
         num = num - 1
-        local myImage = self.image .. tostring( getCrateNum() ) .. ".gif"
+        local myImage = self.image .. tostring( getCrateNum() ) .. ".png"
         local body = display.newImageRect( myImage, self.imageHeight, self.imageWidth )
         if( num == 2 ) then
             body.doObstacleCollisionCheck = true
@@ -139,7 +139,7 @@ function crates:doCastleStack(mainScene)
     end
 
     y = prevObject.y - prevObject.height
-    local myImage = self.image .. tostring( getCrateNum() ) .. ".gif"
+    local myImage = self.image .. tostring( getCrateNum() ) .. ".png"
     local body = display.newImageRect( myImage, self.imageHeight, self.imageWidth )     
     body.anchorX=0.5;body.anchorY=0.5
     body.y = y

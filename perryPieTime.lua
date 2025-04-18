@@ -308,7 +308,7 @@ function scene:enterScene( event )
 	display.setDefault( "magTextureFilter", "nearest" )
     display.setDefault( "minTextureFilter", "nearest" )
 	
-	local startburstSheet = graphics.newImageSheet( "images/pieTime_background.gif", { width=256, height=186, numFrames=24 } )
+	local startburstSheet = graphics.newImageSheet( "images/pieTime_background.png", { width=256, height=186, numFrames=24 } )
     scene.bg = display.newSprite( startburstSheet, {{ name = "loop", start=1, count=24, time=1000, loopCount=0 }} )
     scene.bg.anchorX = 0.5
 	scene.bg.anchorY = 0.5

@@ -175,7 +175,7 @@ end
 if( bPlayIntro ) then
     storyboard.gotoScene( "splashScreen" )
 else
-    storyboard.gotoScene( "gameCredits" )
+    storyboard.gotoScene( "menu" )
 end
 
 GA.isDebug                  = false

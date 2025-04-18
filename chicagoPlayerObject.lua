@@ -340,7 +340,7 @@ function playerObject:init(scene)
     display.setDefault( "magTextureFilter", "nearest" )
     display.setDefault( "minTextureFilter", "nearest" )
     
-    local dashSheet = graphics.newImageSheet( "images/dashAnim.gif", { width=256, height=186, numFrames=15 } )
+    local dashSheet = graphics.newImageSheet( "images/dashAnim.png", { width=256, height=186, numFrames=15 } )
     self.dashEffect = display.newSprite( dashSheet, {{ name = "loop", start=1, count=15, time=850, loopCount=0 }} )
     
     self.dashEffect.anchorX = 0.5

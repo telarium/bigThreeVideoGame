@@ -381,7 +381,7 @@ function scene:enterScene( event )
     display.setDefault( "minTextureFilter", "nearest" )
     
         
-    local startburstSheet = graphics.newImageSheet( "images/whoDatLady-bgAnim.gif", { width=256, height=186, numFrames=18 } )
+    local startburstSheet = graphics.newImageSheet( "images/whoDatLady-bgAnim.png", { width=256, height=186, numFrames=18 } )
     scene.bg = display.newSprite( startburstSheet, {{ name = "loop", start=1, count=18, time=1000, loopCount=0 }} )
     scene.bg.anchorX = 0.5
 	scene.bg.anchorY = 0.5

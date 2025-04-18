@@ -190,7 +190,7 @@ function cutlass:spawn(scene)
 	tailpipe.alpha = 0.001
 	mainScene.city.displayGroup:insert( tailpipe )
 
-	local smogSheet = graphics.newImageSheet( "images/smogAnim.gif", { width=240, height=135, numFrames=23 } )
+	local smogSheet = graphics.newImageSheet( "images/smogAnim.png", { width=240, height=135, numFrames=23 } )
     local smog = display.newSprite( smogSheet, {{ name = "loop", start=1, count=23, time=1100, loopCount=0 }} )
     
     smog.anchorX = 0.5

@@ -21,44 +21,45 @@ local prevTime = system.getTimer() + 100
 
 local imgMultiplication = 2
 
-tile = {img="images/cityRedBrickStore.png",width="107",height="81",signX=120,signY=84}
-table.insert( tileBank, tile )
-tile = {img="images/cityGreyApartment.png",width="154",height="137"}
-table.insert( tileBank, tile )
-tile = {img="images/cityYellowHouse.png",width="154",height="137"}
-table.insert( tileBank, tile )
-tile = {img="images/cityYellowHouse2.png",width="163",height="137"}
-table.insert( tileBank, tile )
-tile = {img="images/cityHouse1.png",width="94",height="73"}
-table.insert( tileBank, tile )
-tile = {img="images/cityHouse2.png",width="97",height="81"}
-table.insert( tileBank, tile )
-tile = {img="images/cityHouse3.png",width="93",height="79"}
-table.insert( tileBank, tile )
-tile = {img="images/cityYellowHouse2.png",width="163",height="137"}
-table.insert( tileBank, tile )
-tile = {img="images/cityHouse1.png",width="94",height="73"}
-table.insert( tileBank, tile )
-tile = {img="images/cityHouse2.png",width="97",height="81"}
-table.insert( tileBank, tile )
-tile = {img="images/cityHouse3.png",width="93",height="79"}
-table.insert( tileBank, tile )
-tile = {img="images/cityParkingGarage.png",width="230",height="135"}
-table.insert( tileBank, tile )
-tile = {img="images/cityParkingGarage.png",width="230",height="135"}
-table.insert( tileBank, tile )
-tile = {img="images/cityHospital1.png",width="156",height="105",signX=218,signY=110}
-table.insert( tileBank, tile )
-tile = {img="images/cityHospital2.png",width="156",height="105"}
-table.insert( tileBank, tile )
-tile = {img="images/chicagoSchool.png",width="156",height="89"}
-table.insert( tileBank, tile )
-tile = {img="images/city7722.png",width="154",height="123"}
-table.insert( tileBank, tile )
+tile = { img="images/cityRedBrickStore.png",    width=107, height=81,  signX=120, signY=84 }
+table.insert(tileBank, tile)
+tile = { img="images/cityGreyApartment.png",    width=154, height=137 }
+table.insert(tileBank, tile)
+tile = { img="images/cityYellowHouse.png",      width=154, height=137 }
+table.insert(tileBank, tile)
+tile = { img="images/cityYellowHouse2.png",     width=163, height=137 }
+table.insert(tileBank, tile)
+tile = { img="images/cityHouse1.png",           width=94,  height=73  }
+table.insert(tileBank, tile)
+tile = { img="images/cityHouse2.png",           width=97,  height=81  }
+table.insert(tileBank, tile)
+tile = { img="images/cityHouse3.png",           width=93,  height=79  }
+table.insert(tileBank, tile)
+tile = { img="images/cityYellowHouse2.png",     width=163, height=137 }
+table.insert(tileBank, tile)
+tile = { img="images/cityHouse1.png",           width=94,  height=73  }
+table.insert(tileBank, tile)
+tile = { img="images/cityHouse2.png",           width=97,  height=81  }
+table.insert(tileBank, tile)
+tile = { img="images/cityHouse3.png",           width=93,  height=79  }
+table.insert(tileBank, tile)
+tile = { img="images/cityParkingGarage.png",    width=230, height=135 }
+table.insert(tileBank, tile)
+tile = { img="images/cityParkingGarage.png",    width=230, height=135 }
+table.insert(tileBank, tile)
+tile = { img="images/cityHospital1.png",        width=156, height=105, signX=218, signY=110 }
+table.insert(tileBank, tile)
+tile = { img="images/cityHospital2.png",        width=156, height=105 }
+table.insert(tileBank, tile)
+tile = { img="images/chicagoSchool.png",        width=156, height=89  }
+table.insert(tileBank, tile)
+tile = { img="images/city7722.png",             width=154, height=123 }
+table.insert(tileBank, tile)
+
 
 tile = nil
 
-local signBank = { "citySignASM.gif", "citySignHuck.gif", "citySignMasterGraphics.gif", "citySignFunUniversity.gif", "citySignDragos.gif", "citySignJensenFarms.gif", "citySignLonghornCornOil.gif", "citySignLittleLaddys.gif", "citySignTerrifyingTim.gif", "citySignBeanTownHeat.gif", "citySignJavaho.gif", "citySignSandy.gif" }
+local signBank = { "citySignASM.png", "citySignHuck.png", "citySignMasterGraphics.png", "citySignFunUniversity.png", "citySignDragos.png", "citySignJensenFarms.png", "citySignLonghornCornOil.png", "citySignLittleLaddys.png", "citySignTerrifyingTim.png", "citySignBeanTownHeat.png", "citySignJavaho.png", "citySignSandy.png" }
 local cityObject = {
     
 }
@@ -127,7 +128,7 @@ local function setGroundObject(self)
     display.setDefault( "magTextureFilter", "nearest" )
     display.setDefault( "minTextureFilter", "nearest" )
     
-    self.groundSprite1 = display.newImageRect( "images/chicagoStreetTile.gif", 576, 40 )
+    self.groundSprite1 = display.newImageRect( "images/chicagoStreetTile.png", 576, 40 )
     self.groundSprite1.anchorX = 1
     self.groundSprite1.anchorY = 1
     self.groundSprite1.x = scene.rightEdge	
@@ -135,7 +136,7 @@ local function setGroundObject(self)
 	self.groundSprite1.xScale = imgMultiplication
 	self.groundSprite1.yScale = imgMultiplication
 	
-	self.groundSprite2 = display.newImageRect( "images/chicagoStreetTile.gif", 576, 40 )
+	self.groundSprite2 = display.newImageRect( "images/chicagoStreetTile.png", 576, 40 )
     self.groundSprite2.anchorX = 1
     self.groundSprite2.anchorY = 1
     self.groundSprite2.x = self.groundSprite1.x + self.groundSprite1.width * imgMultiplication
@@ -191,7 +192,7 @@ local function setGroundObject(self)
     self.skySprite4.xScale = imgMultiplication
 	self.skySprite4.yScale = imgMultiplication
     
-    self.sunsetSprite = display.newImageRect( "images/cityBackgroundSunset.gif", 491, 179 )
+    self.sunsetSprite = display.newImageRect( "images/cityBackgroundSunset.png", 491, 179 )
     self.sunsetSprite.anchorX = 0.5
     self.sunsetSprite.anchorY = 0.5
     self.sunsetSprite.x = display.contentCenterX

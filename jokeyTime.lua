@@ -157,7 +157,7 @@ function scene:enterScene( event )
     display.setDefault( "magTextureFilter", "nearest" )
     display.setDefault( "minTextureFilter", "nearest" )
     
-    local spiralSheet = graphics.newImageSheet( "images/jokeyTime_background.gif", { width=329, height=183, numFrames=15 } )
+    local spiralSheet = graphics.newImageSheet( "images/jokeyTime_background.png", { width=329, height=183, numFrames=15 } )
     scene.bg = display.newSprite( spiralSheet, {{ name = "loop", start=1, count=15, time=800, loopCount=0 }} )
     scene.bg.anchorX = 0.5
 	scene.bg.anchorY = 0.5

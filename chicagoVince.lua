@@ -255,7 +255,7 @@ function vince:spawn(scene)
     
     
 
-    local vinceSheet = graphics.newImageSheet( "images/vinceFireballAnim.gif", { width=144, height=117, numFrames=15 } )
+    local vinceSheet = graphics.newImageSheet( "images/vinceFireballAnim.png", { width=144, height=117, numFrames=15 } )
     local vinceAnim = display.newSprite( vinceSheet, {{ name = "loop", start=1, count=15, time=900, loopCount=0 }} )
     
     
@@ -281,7 +281,7 @@ function vince:spawn(scene)
     display.setDefault( "magTextureFilter", "linear" )
     display.setDefault( "minTextureFilter", "linear" )
     
-    local vinceFace = display.newImageRect( "images/vinceFace.gif", 75, 79 )
+    local vinceFace = display.newImageRect( "images/vinceFace.png", 75, 79 )
     vinceFace.blendMode = "multiply"
     vinceFace.alpha = 0.8
     vinceFace.x = vinceAnim.x - 5
@@ -297,7 +297,7 @@ function vince:spawn(scene)
     boredomMeterFrame.yScale = 0.001
     boredomMeterFrame.isVisible = false
     
-    local boredomMeterBar = display.newImageRect( "images/vinceBoredomMeterBar.gif", 133, 6 )
+    local boredomMeterBar = display.newImageRect( "images/vinceBoredomMeterBar.png", 133, 6 )
     --boredomMeterBar.blendMode = "add"
     boredomMeterBar.anchorY = 0.5
     boredomMeterBar.anchorX = 0

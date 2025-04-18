@@ -22,7 +22,7 @@ local creditsText = "designed, programmed, & produced by\nANDREW LANGLEY"
 creditsText = creditsText .. "\n\nbased on the comedy of\nDON BARRIS\nWALTER “MOLE” MOLINSKI\nPERRY KARAVELLO"
 creditsText = creditsText .. "\n\nexecutive producer\nJOHN QUINCY ADAMS"
 creditsText = creditsText .. "\n\nstarring\nDON BARRIS\nMOLE\nPERRY CARAMELLO\nMARY JANE GREENE\nJOHN QUINCY ADAMS\nVINCE FREEMAN"
-creditsText = creditsText .. "\n\nart, animation, & computergraphs by\nANDREW LANGLEY (@telarium)\nKELLY ROBOTOSON (@beardswin)"
+creditsText = creditsText .. "\n\nart, animation, & computergraphs by\nANDREW LANGLEY\nKELLY ROBOTOSON"
 creditsText = creditsText .. "\n\nsound design by\nANDREW LANGLEY \nFREESOUND.ORG"
 creditsText = creditsText .. "\n\nlegal services by\nSOL STEINBERGOWITZGREENBAUM"
 creditsText = creditsText .. "\n\ncatering by\nBURT WARD"
@@ -30,7 +30,7 @@ creditsText = creditsText .. "\n\nperry’s hair styled by\nSHEILA FALCONI"
 creditsText = creditsText .. "\n\ntoaster appears courtesy of\nTHE TOASTER in HARDY, ARKANSAS"
 creditsText = creditsText .. "\n\nspecial thanks\nDON BARRIS\nT.B.\nMARY JANE GREENE\nRUCKA RUCKA ALI\nCLETO & THE CLETONES\nJEFF SCHWEIKART\nCORONA LABS\nNICOLE PEREZ\nALEXANDRA ALQUATI\nBOBCAT GOLDTHWAIT\nJIMMY KIMMEL\n& ALL THE BIG 3 FANS!"
 creditsText = creditsText .. "\n\ndedicated to\nCOOKIE, NATHANIEL & JUANDEZ"
-creditsText = creditsText .. "\n\n(c)2014 LANGLEY CREATIONS \n& SIMPLY DON - THE PODCAST NETWORK"
+creditsText = creditsText .. "\n\n(c)2025 LANGLEY CREATIONS \n& SIMPLY DON - THE PODCAST NETWORK"
 creditsText = creditsText .. "\n\nno dogs were harmed\nduring the making of this game"
 creditsText = creditsText .. "\n\n\nwww.thebig3podcast.com\n#itAintQuittin"
 
@@ -95,7 +95,7 @@ function scene:enterScene( event )
     display.setDefault( "magTextureFilter", "nearest" )
     display.setDefault( "minTextureFilter", "nearest" )
     
-    local startburstSheet = graphics.newImageSheet( "images/whoDatLady-bgAnim.gif", { width=256, height=186, numFrames=18 } )
+    local startburstSheet = graphics.newImageSheet( "images/whoDatLady-bgAnim.png", { width=256, height=186, numFrames=18 } )
     scene.bg = display.newSprite( startburstSheet, {{ name = "loop", start=1, count=18, time=1000, loopCount=0 }} )
     scene.bg.anchorX = 0.5
 	scene.bg.anchorY = 0.5
@@ -152,7 +152,7 @@ function scene:enterScene( event )
     display.setDefault( "minTextureFilter", "linear" )
     
         
-    local oaklandLogo = display.newImageRect( "images/madeInOakland.gif", 350, 313 )
+    local oaklandLogo = display.newImageRect( "images/madeInOakland.png", 350, 313 )
     oaklandLogo.anchorY = 0
     oaklandLogo.x = display.contentCenterX
     oaklandLogo.y = creditsGroup.contentBounds.yMax + 30

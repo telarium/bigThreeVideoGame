@@ -5,67 +5,74 @@
 
 -- Script animates an iris-out transition inbetween scenes
 
+local storyboard   = require("storyboard")
 local displayGroup = nil
-local transition = nil
+local irisSprite   = nil
 
-local UITransition = {
+local UITransition = {}
 
-}
+function UITransition:execute(nextScene, delay)
+    delay = delay or 0
 
-function UITransition:execute(scene, delay)
-	local sceneToLoad = scene
-    
-    if( not delay ) then
-        delay = 0
-    end
-    
-	local mySpriteListener = function( event )
+    local function onIrisFrame(event)
+        if event.phase == "ended" then
+            irisSprite:removeSelf()
+            irisSprite = nil
 
-	  if ( event.phase == "ended" ) then
-		   transition:removeSelf()
-		   transition = nil
-		   display.remove( displayGroup )
-		   displayGroup = nil
-          
-           if( UIEndScreen_Remove ) then
+            display.remove(displayGroup)
+            displayGroup = nil
+
+            if UIEndScreen_Remove then
                 UIEndScreen_Remove()
-           end
-           
-           display.remove( self.view )
-		   removeDisplayGroups()
-		   
-		   storyboard.purgeAll()
-		   storyboard.removeAll()
-		   storyboard.gotoScene( sceneToLoad )
-	  end
-	end
-    
-    displayGroup = display.newGroup()
-    addDisplayGroup( displayGroup )
-    display.setDefault( "magTextureFilter", "nearest" )
-    display.setDefault( "minTextureFilter", "nearest" )
-    local spriteSheet = graphics.newImageSheet( "images/transitionAnim.png", { width=240, height=135, numFrames=25 } )
-    transition = display.newSprite( spriteSheet, {{ name = "sequence", start=1, count=25, time=900, loopCount=1 }} )
-    transition.x = display.contentCenterX
-    transition.y = display.contentCenterY
-    transition.yScale = display.actualContentHeight / transition.height
-    transition.xScale = transition.yScale
-    transition.anchorX = 0.5
-	transition.anchorY = 0.5
-    transition.alpha = 0.001
-    display.setDefault( "magTextureFilter", "linear" )
-    display.setDefault( "minTextureFilter", "linear" ) 
-    displayGroup:toFront()
-    
-    local go = function()        
-        transition:setSequence( "sequence" )
-        transition:play()
-        transition.alpha = 1
-        displayGroup:insert( transition )
-        transition:addEventListener( "sprite", mySpriteListener )
+            end
+
+            removeDisplayGroups()
+
+            storyboard.purgeAll()
+            storyboard.removeAll()
+            storyboard.gotoScene(nextScene)
+        end
     end
-    timer.performWithDelay( delay, go )
+
+    -- make a new group for the wipe
+    displayGroup = display.newGroup()
+    addDisplayGroup(displayGroup)
+
+    -- load your sheet
+    local sheet = graphics.newImageSheet(
+      "images/transitionAnim.png",
+      { width=240, height=135, numFrames=25 }
+    )
+
+    -- create the sprite
+    irisSprite = display.newSprite(sheet, {
+      { name="sequence", start=1, count=25, time=900, loopCount=1 }
+    })
+
+    -- center it
+    irisSprite.x = display.contentCenterX
+    irisSprite.y = display.contentCenterY
+    irisSprite.anchorX, irisSprite.anchorY = 0.5, 0.5
+
+    -- **scale** it big enough to cover *both* width and height
+    local sx = display.actualContentWidth  / irisSprite.width
+    local sy = display.actualContentHeight / irisSprite.height
+    local s  = math.max(sx, sy)
+    irisSprite:scale(s, s)
+
+    irisSprite.alpha = 0
+
+    -- put it on top
+    displayGroup:toFront()
+
+    -- play it after delay
+    timer.performWithDelay(delay, function()
+        irisSprite.alpha = 1
+        displayGroup:insert(irisSprite)
+        irisSprite:addEventListener("sprite", onIrisFrame)
+        irisSprite:setSequence("sequence")
+        irisSprite:play()
+    end)
 end
 
-
-return UITransition;
+return UITransition

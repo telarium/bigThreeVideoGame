@@ -350,17 +350,15 @@ function cityObject:setTiles()
     local tileX = mainScene.leftEdge
     local tile = nil
     shuffleTiles(self)
-    for i=1,table.getn( self.activeTiles ) do
+    for i = 1, table.getn(self.activeTiles) + 1 do  -- add an extra tile because some phone screens are super wide
         tile = loadTileImage(self)
-        if( tile ) then
+        if tile then
             tile.x, tile.y = tileX, self.groundSprite1.y - self.groundSprite1.height * imgMultiplication
-            tileX = tile.x + tile.width * imgMultiplication + math.random( 20 ) + 5
+            tileX = tile.x + tile.width * imgMultiplication + math.random(20) + 5
             self.activeTiles[i] = tile
-            addSign( self, tile )
+            addSign(self, tile)
         end
-        
     end
-
 end
 
 -- Set speed of how fast the city is moving (or how fast the character is running)

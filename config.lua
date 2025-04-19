@@ -15,4 +15,9 @@ application = {
 		yAlign = "center",
 		fps = 60,
 	},
+
+	android = {
+		immersiveMode = true,
+		androidSystemUiVisibility = "immersiveSticky",
+	},
 }

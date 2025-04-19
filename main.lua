@@ -87,6 +87,9 @@ local function onSystemEvent( event )
         if ( system.getInfo("platformName") == "Android" ) then
             gameNetwork.init( "google", gameNetworkInitialized )
         end
+        if event.type == "applicationResume" then
+            native.setProperty("androidSystemUiVisibility", "immersiveSticky")
+        end
         return true
     end
 end

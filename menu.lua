@@ -142,7 +142,8 @@ local function showFirstScreen(character)
     if( character ) then
         scene.backButton.blendMode = "normal"
         selectedCharacter = nil
-        transition.to( scene.backButton, { time=250, delay=0, x=-100, transition=easing.inExpo} )
+        local offscreenX = display.screenOriginX - scene.backButton.width
+        transition.to( scene.backButton, { time=250, delay=0, x=offscreenX, transition=easing.inExpo} )
         transition.to( scene.playButton, { time=250, delay=0, y=500, transition=easing.inExpo} )
         transition.to( scene.bodyText, { time=200, delay=0, alpha=0, transition=easing.outExpo} )
     else

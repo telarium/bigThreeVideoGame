@@ -11,6 +11,10 @@ uiTransition = require( "uiTransition" )
 physics = require("physics" )
 require "fileStorage"
 
+if system.getInfo("platform") == "android" then
+    native.setProperty("androidSystemUiVisibility", "immersiveSticky")
+end
+
 displayGroups = {}
 
 --- Removes all references to a module.

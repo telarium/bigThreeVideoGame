@@ -14,10 +14,5 @@ application = {
 		xAlign = "center",
 		yAlign = "center",
 		fps = 60,
-	},
-
-	android = {
-		immersiveMode = true,
-		androidSystemUiVisibility = "immersiveSticky",
-	},
+	}
 }

@@ -8,17 +8,29 @@ settings =
 
     orientation =
     {
-        default   = "landscapeRight",
+        default = "landscapeRight",
         supported = { "landscapeRight", "landscapeLeft" }
+    },
+
+    icons =
+    {
+        android =
+        {
+            mdpi    = "icon-mdpi.png",      -- 48x48 px
+            hdpi    = "icon-hdpi.png",      -- 72x72 px
+            xhdpi   = "icon-xhdpi.png",     -- 96x96 px
+            xxhdpi  = "icon-xxhdpi.png",    -- 144x144 px
+            xxxhdpi = "icon-xxxhdpi.png",   -- 192x192 px
+        },
     },
 
     iphone =
     {
         plist =
         {
-            UIStatusBarHidden    = true,
-            UIPrerenderedIcon    = true,  -- set to false for "shine" overlay
-            UIAppFonts           =
+            UIStatusBarHidden = true,
+            UIPrerenderedIcon = true,
+            UIAppFonts =
             {
                 "C64 User Mono.ttf"
             }
@@ -32,14 +44,15 @@ settings =
             "android.permission.INTERNET",
             "android.permission.VIBRATE"
         },
-        googlePlayGamesAppId = "481994030853",
+
+        googlePlayGamesAppId = "481994030853"
     },
 
     plugins =
     {
         ["CoronaProvider.gameNetwork.google"] =
         {
-            publisherId        = "com.coronalabs",
+            publisherId = "com.coronalabs",
             supportedPlatforms = { android = true },
         },
     },

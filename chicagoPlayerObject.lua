@@ -378,11 +378,7 @@ function playerObject:init(scene)
             system.vibrate()
         end
         
-        local delay = 1100
-        local platform = system.getInfo( "platformName" )
-        if( platform == "Android" ) then
-            delay = 1350 + 500
-        end
+        local delay = 1350
         
         timer.performWithDelay( 5, playVoice, 1 )
         timer.performWithDelay( delay, shake, 1 )

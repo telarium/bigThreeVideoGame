@@ -2,11 +2,9 @@
 
 Welcome to the source code for The Big 3 Videogame!
 
-Sadly the game is no longer available on the Google Play store, but you can still find the APK to download on sites such as this:
+This game was scripted in LUA for the Solar2D game engine, formerly known as CoronaSDK. Simply open the "main.lua" file in Solar2D, which you can download here:
 
-https://apkpure.com/big-3/com.langleycreations.big3
-
-This game was scripted in LUA with Corona SDK, which may no longer be available for use.
+https://solar2d.com/
 
 # The MIT License (MIT)
 

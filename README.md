@@ -2,6 +2,8 @@
 
 Welcome to the source code for The Big 3 Videogame!
 
+https://play.google.com/store/apps/details?id=com.langleycreations.bigThree
+
 This game was scripted in LUA for the Solar2D game engine, formerly known as CoronaSDK. Simply open the "main.lua" file in Solar2D, which you can download here:
 
 https://solar2d.com/
